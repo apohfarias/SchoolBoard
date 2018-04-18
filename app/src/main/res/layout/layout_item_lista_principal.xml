@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="100sp"
+    android:orientation="vertical"
+    tools:context=".ItemListaPrincipal">
+
+
+    <TextView
+        android:id="@+id/textViewDisc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:capitalize="none"
+        android:text="@string/textviewdisc"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textViewProf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/textviewprof"
+        android:textAlignment="center" />
+
+    <TextView
+        android:id="@+id/textViewCont"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/textviewcont"
+        android:textAlignment="center" />
+</LinearLayout>

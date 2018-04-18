@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Schoolboard</string>
+    <string name="title_activity_item_lista_principal">ItemListaPrincipal</string>
+    <string name="textviewdisc">TextViewDisc</string>
+    <string name="textviewprof">TextViewProf</string>
+    <string name="textviewcont">TextViewCont</string>
+
+</resources>
