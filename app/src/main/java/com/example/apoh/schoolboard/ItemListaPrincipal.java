@@ -24,12 +24,10 @@ class ItemHolder extends RecyclerView.ViewHolder{
     }
 }
 
-
 public class ItemListaPrincipal {
     String disciplina;
     String professor;
     String contador;
-
 
     ItemListaPrincipal( String sDisciplina, String sProfessor, String sContador){
 

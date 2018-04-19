@@ -4,5 +4,8 @@
     <string name="textviewdisc">TextViewDisc</string>
     <string name="textviewprof">TextViewProf</string>
     <string name="textviewcont">TextViewCont</string>
+    <string name="title_activity_tela_capture_imagem">TelaCaptureImagem</string>
+    <string name="camera">Button</string>
+    <string name="galeria">Button</string>
 
 </resources>
