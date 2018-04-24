@@ -12,9 +12,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.apoh.schoolboard.banco.Disciplina;
 
@@ -69,10 +69,12 @@ class Adaptador extends RecyclerView.Adapter<ItemHolder>{
     }
 }
 
+
 public class TelaPrincipal extends AppCompatActivity {
     ArrayList<ItemListaPrincipal> dataSource = null;
     EditText nomeEditTxt,profTxt;
 
+    private RecyclerView listaMaterias;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +89,8 @@ public class TelaPrincipal extends AppCompatActivity {
             }
         });
 
+
+
         dataSource = new ArrayList<>();
         RecyclerView lista = null;
 
@@ -94,6 +98,17 @@ public class TelaPrincipal extends AppCompatActivity {
 
         dataSource.add(new ItemListaPrincipal("Dispositivos Moveis", "Silvano", "5"));
         dataSource.add(new ItemListaPrincipal("Engenharia de Software", "Alex", "6"));
+        dataSource.add(new ItemListaPrincipal("Computação Gráfica", "Silvano", "4"));
+        dataSource.add(new ItemListaPrincipal("Computação Gráfica", "Silvano", "4"));
+        dataSource.add(new ItemListaPrincipal("Computação Gráfica", "Silvano", "4"));
+        dataSource.add(new ItemListaPrincipal("Computação Gráfica", "Silvano", "4"));
+        dataSource.add(new ItemListaPrincipal("Computação Gráfica", "Silvano", "4"));
+        dataSource.add(new ItemListaPrincipal("Computação Gráfica", "Silvano", "4"));
+        dataSource.add(new ItemListaPrincipal("Computação Gráfica", "Silvano", "4"));
+        dataSource.add(new ItemListaPrincipal("Computação Gráfica", "Silvano", "4"));
+        dataSource.add(new ItemListaPrincipal("Computação Gráfica", "Silvano", "4"));
+        dataSource.add(new ItemListaPrincipal("Computação Gráfica", "Silvano", "4"));
+        dataSource.add(new ItemListaPrincipal("Computação Gráfica", "Silvano", "4"));
         dataSource.add(new ItemListaPrincipal("Computação Gráfica", "Silvano", "4"));
 
         lista = (RecyclerView)findViewById(R.id.lista);
@@ -104,6 +119,7 @@ public class TelaPrincipal extends AppCompatActivity {
         Adaptador adapt = new Adaptador(this, dataSource);
         lista.setAdapter(adapt);
 
+        lista = (RecyclerView) findViewById(R.id.lista);
     }
 
     //DISPLAY INPUT DIALOG
@@ -144,8 +160,8 @@ public class TelaPrincipal extends AppCompatActivity {
                         nomeEditTxt.setText("");
                         profTxt.setText("");
 
-                        adapter=new MyAdapter(MainActivity.this,helper.retrieve());
-                        rv.setAdapter(adapter);
+                        com.example.apoh.schoolboard.adapter=new MyAdapter(MainActivity.this,helper.retrieve());
+                        rv.setAdapter(com.example.apoh.schoolboard.adapter);
 
 
                     }
@@ -159,6 +175,7 @@ public class TelaPrincipal extends AppCompatActivity {
 
         d.show();
     }
+
 
 
 }

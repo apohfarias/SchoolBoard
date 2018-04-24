@@ -1,7 +1,5 @@
 package com.example.apoh.schoolboard;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
@@ -36,6 +34,5 @@ public class ItemListaPrincipal {
         contador = sContador;
 
     }
-
 }
 
