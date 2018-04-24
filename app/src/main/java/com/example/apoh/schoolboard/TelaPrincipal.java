@@ -3,6 +3,7 @@ package com.example.apoh.schoolboard;
 import android.app.Dialog;
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -33,7 +34,7 @@ class Adaptador extends RecyclerView.Adapter<ItemHolder>{
 
     //METODO CHAMADO N VEZES PARA INFLAR O XML DA CELULA E RETORNAR UM OBJETO DE LAYOUT
     /* Método que deverá retornar layout criado pelo ViewHolder já inflado em uma view. */
-    //@NonNull
+    @NonNull
     @Override
     public ItemHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View celula = LayoutInflater.from(contexto).inflate(R.layout.layout_item_lista_principal, parent,false );
@@ -78,7 +79,7 @@ public class TelaPrincipal extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_tela_principal);
 
-        Button botaoAdd = (Button) findViewById(R.id.buttonAdd);
+        FloatingActionButton botaoAdd = (FloatingActionButton)findViewById(R.id.btnNovaMateria);
         botaoAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
