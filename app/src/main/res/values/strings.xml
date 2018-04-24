@@ -7,5 +7,6 @@
     <string name="title_activity_tela_capture_imagem">TelaCaptureImagem</string>
     <string name="camera">Button</string>
     <string name="galeria">Button</string>
+    <string name="adicionar_disciplina">Adicionar Disciplina</string>
 
 </resources>

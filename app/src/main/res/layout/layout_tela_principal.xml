@@ -6,10 +6,26 @@
     android:layout_height="match_parent"
     tools:context=".TelaPrincipal">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/lista"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clickable="true"
-        android:focusable="true" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/lista"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:focusable="true">
+
+        </android.support.v7.widget.RecyclerView>
+
+        <Button
+            android:id="@+id/buttonAdd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/adicionar_disciplina" />
+
+    </LinearLayout>
+
 </android.support.v7.widget.LinearLayoutCompat>
