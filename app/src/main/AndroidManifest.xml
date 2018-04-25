@@ -34,7 +34,8 @@
             android:name=".TelaCaptureImagem"
             android:label="@string/title_activity_tela_capture_imagem"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".TelaAula"></activity>
+        <activity android:name=".TelaAula" />
+        <activity android:name=".ItemListaAula"></activity>
     </application>
 
 </manifest>
