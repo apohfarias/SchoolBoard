@@ -36,7 +36,8 @@
         android:layout_height="wrap_content"
         android:text="|"
         tools:layout_editor_absoluteX="105dp"
-        tools:layout_editor_absoluteY="16dp" />
+        tools:layout_editor_absoluteY="16dp"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/professor"
@@ -58,9 +59,12 @@
         android:id="@+id/buttonEditar"
         android:layout_width="87dp"
         android:layout_height="36dp"
-        android:text="Editar"
+        android:text="Capturar"
+        android:onClick="capturaImagem"
+        android:nestedScrollingEnabled="false"
         tools:layout_editor_absoluteX="269dp"
-        tools:layout_editor_absoluteY="7dp" />
+        tools:layout_editor_absoluteY="7dp"
+        tools:ignore="MissingConstraints" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
