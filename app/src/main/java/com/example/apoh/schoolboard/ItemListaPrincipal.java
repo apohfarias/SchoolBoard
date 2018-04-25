@@ -4,13 +4,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
-class ItemHolder extends RecyclerView.ViewHolder{
+class ItemHolder extends RecyclerView.ViewHolder {
 
     TextView textoDisciplina = null;
     TextView textoProfessor = null;
     TextView textoContador = null;
-
-
+    private ItemClickListener itemClickListener;
 
     ItemHolder(View view){
         super(view);
@@ -20,6 +19,17 @@ class ItemHolder extends RecyclerView.ViewHolder{
         textoContador = (TextView)view.findViewById(R.id.textViewCont);
 
     }
+
+/*    @Override
+    public void onClick(View v) {
+        this.itemClickListener.onItemClick(v,getLayoutPosition());
+    }
+
+    public void setItemClickListener(ItemClickListener ic)
+    {
+        this.itemClickListener=ic;
+
+    }*/
 }
 
 public class ItemListaPrincipal {

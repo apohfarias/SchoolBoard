@@ -2,6 +2,7 @@ package com.example.apoh.schoolboard;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -9,12 +10,16 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.example.apoh.schoolboard.banco.Disciplina;
 
@@ -24,6 +29,16 @@ import java.util.ArrayList;
 class Adaptador extends RecyclerView.Adapter<ItemHolder>{
 
     Context contexto = null;
+/*    String [] disciplinas;
+    String [] posicao;
+
+    Adaptador(Context contexto, String [] disciplinas, String [] posicao){
+
+        this.contexto = contexto;
+        this.disciplinas = disciplinas;
+        this.posicao = posicao;
+    }*/
+
     ArrayList<ItemListaPrincipal> lista = null;
 
     Adaptador(Context contexto, ArrayList<ItemListaPrincipal> lista){
@@ -47,12 +62,29 @@ class Adaptador extends RecyclerView.Adapter<ItemHolder>{
      * É onde a mágica acontece!
      * */
     @Override
-    public void onBindViewHolder(@NonNull ItemHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ItemHolder holder, final int position) {
         ItemListaPrincipal item = lista.get(position);
 
         holder.textoDisciplina.setText(item.disciplina);
         holder.textoProfessor.setText(item.professor);
         holder.textoContador.setText(item.contador);
+
+        //Quando o item é clicado
+        holder.textoDisciplina.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                contexto = view.getContext();
+                Intent intent = new Intent(contexto, TelaAula.class);
+                String posicao = Integer.toString(position);
+                Log.d("posicao", posicao);
+
+                intent.putExtra("Disciplina", lista.get(position).disciplina);
+
+                contexto.startActivity(intent);
+            }
+        });
+
     }
 
     //METODO QUE DETERMINA QUANTOS ITENS VAI TER NA LISTA
@@ -67,6 +99,9 @@ class Adaptador extends RecyclerView.Adapter<ItemHolder>{
 
         return (lista != null)? lista.size() : 0;
     }
+
+
+
 }
 
 
@@ -126,7 +161,7 @@ public class TelaPrincipal extends AppCompatActivity {
     private void displayInputDialog()
     {
         Dialog d=new Dialog(this);
-        d.setTitle("Insira a disciplina");
+        d.setTitle("Insira a Disciplina");
         d.setContentView(R.layout.input_dialog);
 
         nomeEditTxt= (EditText) d.findViewById(R.id.nomeEditText);
@@ -138,11 +173,11 @@ public class TelaPrincipal extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                //GET DATA
+                //PEGA DADOS
                 String nome = nomeEditTxt.getText().toString();
                 String professor = profTxt.getText().toString();
 
-                //SET DATA
+                //SETA DADOS
                 Disciplina d = new Disciplina();
                 d.setNome_disciplina(nome);
                 d.setProfessor(professor);
@@ -176,6 +211,19 @@ public class TelaPrincipal extends AppCompatActivity {
         d.show();
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
 
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.lista) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 
 }
