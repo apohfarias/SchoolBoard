@@ -1,8 +1,10 @@
-package com.example.apoh.schoolboard;
+package com.example.apoh.schoolboard.holder;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
+
+import com.example.apoh.schoolboard.R;
 
 class ItemHolder extends RecyclerView.ViewHolder {
 

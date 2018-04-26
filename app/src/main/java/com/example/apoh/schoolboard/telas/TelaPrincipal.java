@@ -1,12 +1,12 @@
-package com.example.apoh.schoolboard;
+package com.example.apoh.schoolboard.telas;
 
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,13 +15,13 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
+import com.example.apoh.schoolboard.holder.ItemListaPrincipal;
+import com.example.apoh.schoolboard.R;
 import com.example.apoh.schoolboard.model.Disciplina;
+
 
 import java.util.ArrayList;
 

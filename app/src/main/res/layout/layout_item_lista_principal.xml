@@ -8,7 +8,7 @@
     android:focusable="auto"
     android:focusableInTouchMode="true"
     android:orientation="vertical"
-    tools:context=".ItemListaPrincipal">
+    tools:context=".holder.ItemListaPrincipal">
 
 
     <TextView

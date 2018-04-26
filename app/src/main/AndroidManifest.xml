@@ -29,7 +29,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ItemListaPrincipal" />
+        <activity android:name=".holder.ItemListaPrincipal" />
         <activity
             android:name=".TelaCaptureImagem"
             android:label="@string/title_activity_tela_capture_imagem"
