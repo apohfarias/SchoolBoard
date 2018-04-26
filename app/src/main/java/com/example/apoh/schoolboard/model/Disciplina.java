@@ -1,4 +1,4 @@
-package com.example.apoh.schoolboard.banco;
+package com.example.apoh.schoolboard.model;
 
 public class Disciplina {
     private String id;
