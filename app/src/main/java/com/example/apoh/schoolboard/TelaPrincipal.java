@@ -21,7 +21,7 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.apoh.schoolboard.banco.Disciplina;
+import com.example.apoh.schoolboard.model.Disciplina;
 
 import java.util.ArrayList;
 
@@ -29,16 +29,6 @@ import java.util.ArrayList;
 class Adaptador extends RecyclerView.Adapter<ItemHolder>{
 
     Context contexto = null;
-/*    String [] disciplinas;
-    String [] posicao;
-
-    Adaptador(Context contexto, String [] disciplinas, String [] posicao){
-
-        this.contexto = contexto;
-        this.disciplinas = disciplinas;
-        this.posicao = posicao;
-    }*/
-
     ArrayList<ItemListaPrincipal> lista = null;
 
     Adaptador(Context contexto, ArrayList<ItemListaPrincipal> lista){
@@ -133,14 +123,6 @@ public class TelaPrincipal extends AppCompatActivity {
 
         dataSource.add(new ItemListaPrincipal("Dispositivos Moveis", "Silvano", "5"));
         dataSource.add(new ItemListaPrincipal("Engenharia de Software", "Alex", "6"));
-        dataSource.add(new ItemListaPrincipal("Computação Gráfica", "Silvano", "4"));
-        dataSource.add(new ItemListaPrincipal("Computação Gráfica", "Silvano", "4"));
-        dataSource.add(new ItemListaPrincipal("Computação Gráfica", "Silvano", "4"));
-        dataSource.add(new ItemListaPrincipal("Computação Gráfica", "Silvano", "4"));
-        dataSource.add(new ItemListaPrincipal("Computação Gráfica", "Silvano", "4"));
-        dataSource.add(new ItemListaPrincipal("Computação Gráfica", "Silvano", "4"));
-        dataSource.add(new ItemListaPrincipal("Computação Gráfica", "Silvano", "4"));
-        dataSource.add(new ItemListaPrincipal("Computação Gráfica", "Silvano", "4"));
         dataSource.add(new ItemListaPrincipal("Computação Gráfica", "Silvano", "4"));
         dataSource.add(new ItemListaPrincipal("Computação Gráfica", "Silvano", "4"));
         dataSource.add(new ItemListaPrincipal("Computação Gráfica", "Silvano", "4"));
