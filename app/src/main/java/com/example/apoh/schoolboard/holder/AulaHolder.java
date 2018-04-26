@@ -18,6 +18,7 @@ public class AulaHolder extends RecyclerView.ViewHolder{
 
         textoNome = (TextView)itemView.findViewById(R.id.textAula);
         textoDataCriacao = (TextView)itemView.findViewById(R.id.textDataAula);
+        imageFoto = (ImageView)itemView.findViewById(R.id.imageView2);
 
     }
 
@@ -36,4 +37,5 @@ public class AulaHolder extends RecyclerView.ViewHolder{
     public void setTextoDataCriacao(TextView textoDataCriacao) {
         this.textoDataCriacao = textoDataCriacao;
     }
+
 }
