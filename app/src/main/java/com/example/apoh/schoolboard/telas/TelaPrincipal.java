@@ -1,103 +1,31 @@
 package com.example.apoh.schoolboard.telas;
 
 import android.app.Dialog;
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.apoh.schoolboard.holder.ItemListaPrincipal;
 import com.example.apoh.schoolboard.R;
+import com.example.apoh.schoolboard.adapter.DisciplinaAdapter;
+import com.example.apoh.schoolboard.holder.ItemListaPrincipal;
 import com.example.apoh.schoolboard.model.Disciplina;
-
 
 import java.util.ArrayList;
 
 
-class Adaptador extends RecyclerView.Adapter<ItemHolder>{
-
-    Context contexto = null;
-    ArrayList<ItemListaPrincipal> lista = null;
-
-    Adaptador(Context contexto, ArrayList<ItemListaPrincipal> lista){
-
-        this.contexto = contexto;
-        this.lista = lista;
-    }
-
-    //METODO CHAMADO N VEZES PARA INFLAR O XML DA CELULA E RETORNAR UM OBJETO DE LAYOUT
-    /* Método que deverá retornar layout criado pelo ViewHolder já inflado em uma view. */
-    @NonNull
-    @Override
-    public ItemHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View celula = LayoutInflater.from(contexto).inflate(R.layout.layout_item_lista_principal, parent,false );
-        ItemHolder item = new ItemHolder(celula);
-        return item;
-    }
-    /*
-     * Método que recebe o ViewHolder e a posição da lista.
-     * Aqui é recuperado o objeto da lista de Objetos pela posição e associado à ViewHolder.
-     * É onde a mágica acontece!
-     * */
-    @Override
-    public void onBindViewHolder(@NonNull ItemHolder holder, final int position) {
-        ItemListaPrincipal item = lista.get(position);
-
-        holder.textoDisciplina.setText(item.disciplina);
-        holder.textoProfessor.setText(item.professor);
-        holder.textoContador.setText(item.contador);
-
-        //Quando o item é clicado
-        holder.textoDisciplina.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                contexto = view.getContext();
-                Intent intent = new Intent(contexto, TelaAula.class);
-                String posicao = Integer.toString(position);
-                Log.d("posicao", posicao);
-
-                intent.putExtra("Disciplina", lista.get(position).disciplina);
-
-                contexto.startActivity(intent);
-            }
-        });
-
-    }
-
-    //METODO QUE DETERMINA QUANTOS ITENS VAI TER NA LISTA
-    /*
-     * Método que deverá retornar quantos itens há na lista.
-     * Aconselha-se verificar se a lista não está nula como no exemplo,
-     * pois ao tentar recuperar a quantidade da lista nula pode gerar
-     * um erro em tempo de execução (NullPointerException).
-     * */
-    @Override
-    public int getItemCount() {
-
-        return (lista != null)? lista.size() : 0;
-    }
-
-
-
-}
-
-
 public class TelaPrincipal extends AppCompatActivity {
-    ArrayList<ItemListaPrincipal> dataSource = null;
     EditText nomeEditTxt,profTxt;
+
+
+    ArrayList<ItemListaPrincipal> dataSource = null;
+    RecyclerView lista = null;
 
     private RecyclerView listaMaterias;
 
@@ -115,10 +43,6 @@ public class TelaPrincipal extends AppCompatActivity {
         });
 
 
-
-        dataSource = new ArrayList<>();
-        RecyclerView lista = null;
-
         //Adicionando fixamente os itens, exemplo
 
         dataSource.add(new ItemListaPrincipal("Dispositivos Moveis", "Silvano", "5"));
@@ -133,7 +57,7 @@ public class TelaPrincipal extends AppCompatActivity {
         lista.setItemAnimator(new DefaultItemAnimator());
         lista.setHasFixedSize(true);
 
-        Adaptador adapt = new Adaptador(this, dataSource);
+        DisciplinaAdapter adapt = new DisciplinaAdapter(this, dataSource);
         lista.setAdapter(adapt);
 
         lista = (RecyclerView) findViewById(R.id.lista);

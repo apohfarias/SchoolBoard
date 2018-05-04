@@ -27,7 +27,7 @@ public class ItemListaPrincipal {
     String professor;
     String contador;
 
-    ItemListaPrincipal( String sDisciplina, String sProfessor, String sContador){
+    public ItemListaPrincipal(String sDisciplina, String sProfessor, String sContador){
 
         disciplina = sDisciplina;
         professor = sProfessor;
