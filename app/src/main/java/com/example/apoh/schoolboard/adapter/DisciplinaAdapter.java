@@ -13,6 +13,7 @@ import com.example.apoh.schoolboard.R;
 import com.example.apoh.schoolboard.TelaAula;
 import com.example.apoh.schoolboard.holder.DisciplinaHolder;
 import com.example.apoh.schoolboard.model.Disciplina;
+import com.example.apoh.schoolboard.telas.TelaPrincipal;
 
 import java.util.ArrayList;
 
@@ -52,7 +53,7 @@ public class DisciplinaAdapter extends RecyclerView.Adapter<DisciplinaHolder> {
             public void onClick(View view) {
 
                 contexto = view.getContext();
-                Intent intent = new Intent(contexto, TelaAula.class);
+                Intent intent = new Intent(contexto, TelaPrincipal.class);
                 String posicao = Integer.toString(position);
                 Log.d("posicao", posicao);
 

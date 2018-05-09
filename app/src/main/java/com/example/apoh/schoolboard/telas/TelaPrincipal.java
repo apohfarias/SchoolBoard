@@ -24,7 +24,7 @@ public class TelaPrincipal extends AppCompatActivity {
     EditText nomeEditTxt,profTxt;
 
 
-    ArrayList<ItemListaPrincipal> dataSource = null;
+    ArrayList<Disciplina> dataSource = null;
     RecyclerView lista = null;
 
     private RecyclerView listaMaterias;
@@ -45,12 +45,12 @@ public class TelaPrincipal extends AppCompatActivity {
 
         //Adicionando fixamente os itens, exemplo
 
-        dataSource.add(new ItemListaPrincipal("Dispositivos Moveis", "Silvano", "5"));
-        dataSource.add(new ItemListaPrincipal("Engenharia de Software", "Alex", "6"));
-        dataSource.add(new ItemListaPrincipal("Computação Gráfica", "Silvano", "4"));
-        dataSource.add(new ItemListaPrincipal("Computação Gráfica", "Silvano", "4"));
-        dataSource.add(new ItemListaPrincipal("Computação Gráfica", "Silvano", "4"));
-        dataSource.add(new ItemListaPrincipal("Computação Gráfica", "Silvano", "4"));
+        dataSource.add(new Disciplina( "Silvano", "Alex"));
+        dataSource.add(new Disciplina("Engenharia de Software", "Alex"));
+        dataSource.add(new Disciplina("Computação Gráfica", "Silvano"));
+        dataSource.add(new Disciplina("Computação Gráfica", "Silvano"));
+        dataSource.add(new Disciplina("Computação Gráfica", "Silvano"));
+        dataSource.add(new Disciplina("Computação Gráfica", "Silvano"));
 
         lista = (RecyclerView)findViewById(R.id.lista);
         lista.setLayoutManager(new LinearLayoutManager(this));
@@ -88,7 +88,7 @@ public class TelaPrincipal extends AppCompatActivity {
                 d.setNome_disciplina(nome);
                 d.setProfessor(professor);
 
-                dataSource.add(new ItemListaPrincipal(nome, professor, "4"));
+                dataSource.add(new Disciplina(nome, professor));
 
 /*
                 //SIMPLE VALIDATION
