@@ -30,7 +30,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".TelaAula" />
+        <activity android:name=".telas.TelaAula" />
 
 <!--        <activity android:name=".holder.ItemListaPrincipal" />
         <activity android:name=".ItemListaAula"/>-->

@@ -15,9 +15,9 @@ class ItemHolder extends RecyclerView.ViewHolder {
     ItemHolder(View view){
         super(view);
 
-        textoDisciplina = (TextView)view.findViewById(R.id.textViewDisc);
-        textoProfessor = (TextView)view.findViewById(R.id.textViewProf);
-        textoContador = (TextView)view.findViewById(R.id.textViewCont);
+        textoDisciplina = (TextView)view.findViewById(R.id.TelaPrincipalDisciplina);
+        textoProfessor = (TextView)view.findViewById(R.id.TelaPrincipalProfessor);
+        textoContador = (TextView)view.findViewById(R.id.TelaPrincipalContador);
 
     }
 }

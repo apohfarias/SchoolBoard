@@ -13,12 +13,12 @@
         android:paddingTop="50dp">
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/nomeLayout"
+            android:id="@+id/inputDialogDisciplina"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/nomeEditText"
+                android:id="@+id/inputDialogEditDisciplina"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Nome da Disciplina"
@@ -26,12 +26,12 @@
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/profLayout"
+            android:id="@+id/inputDialogProfessor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/professorEditText"
+                android:id="@+id/inputDialogEditProfessor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Professor da Disciplina"
@@ -42,15 +42,15 @@
         </android.support.design.widget.TextInputLayout>
 
         <Button
-            android:id="@+id/salvarBtn"
+            android:id="@+id/inputDialogBotaoSalvar"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:background="@color/colorAccent"
             android:clickable="true"
+            android:focusable="true"
             android:text="Salvar"
-            android:textColor="@android:color/white"
-            android:focusable="true" />
+            android:textColor="@android:color/white" />
 
 
     </LinearLayout>

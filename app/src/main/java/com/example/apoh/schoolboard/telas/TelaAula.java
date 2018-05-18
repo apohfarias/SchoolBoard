@@ -1,45 +1,16 @@
-package com.example.apoh.schoolboard;
+package com.example.apoh.schoolboard.telas;
 
-import android.Manifest;
-import android.app.Activity;
-import android.content.Context;
+
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
+import android.provider.MediaStore;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 
-class AdaptadorAula extends RecyclerView.Adapter<ItemHolderAula>{
-    Context contexto = null;
-
-    @NonNull
-    @Override
-    public ItemHolderAula onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View celula = LayoutInflater.from(contexto).inflate(R.layout.item_lista_aula, parent,false );
-        ItemHolderAula item = new ItemHolderAula(celula);
-        return item;
-
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull ItemHolderAula holder, int position) {
-
-    }
-
-    @Override
-    public int getItemCount() {
-        return 0;
-    }
-}
-
+import com.example.apoh.schoolboard.R;
 
 public class TelaAula extends AppCompatActivity {
     Button btnCapturar, btnGaleria;

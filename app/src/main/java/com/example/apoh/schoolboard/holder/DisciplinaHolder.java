@@ -14,9 +14,9 @@ public class DisciplinaHolder extends RecyclerView.ViewHolder{
     public DisciplinaHolder(View itemView) {
         super(itemView);
 
-        textoDisciplina = (TextView)itemView.findViewById(R.id.textViewDisc);
-        textoProfessor = (TextView)itemView.findViewById(R.id.textViewProf);
-        textoContador = (TextView)itemView.findViewById(R.id.textViewCont);
+        textoDisciplina = (TextView)itemView.findViewById(R.id.TelaPrincipalDisciplina);
+        textoProfessor = (TextView)itemView.findViewById(R.id.TelaPrincipalProfessor);
+        textoContador = (TextView)itemView.findViewById(R.id.TelaPrincipalContador);
     }
 
     public TextView getTextoDisciplina() {

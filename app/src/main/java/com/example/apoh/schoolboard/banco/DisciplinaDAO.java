@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 import com.example.apoh.schoolboard.model.Disciplina;
 
@@ -13,36 +14,46 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DisciplinaDAO extends SQLiteOpenHelper {
-    public DisciplinaDAO(Context context) {
-        super(context, "schoolboard", null, 1);
+    String[] scriptCriaBanco = {"create table disciplina(_id integer primary key autoincrement, nomeDisciplina text not null, nomeProfessor text not null, dataCriacao date);"};
+    public final String scriptApagaDB = "DROP TABLE IF EXISTS disciplina";
+    Context vrContexto = null;
+
+    public DisciplinaDAO(Context context, String nome, int versao) {
+        super(context, nome, null, 1);
+        vrContexto = context;
     }
 
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String sql = "CREATE TABLE Disciplina (id INTEGER PRIMARY KEY, " +
-                "nome TEXT NOT NULL, " +
+/*        String sql = "CREATE TABLE disciplina (id INTEGER PRIMARY KEY, " +
+                "nomeDisciplina TEXT NOT NULL, " +
                 "nomeProfessor TEXT, " +
                 "dataCriacao DATE);";
-        db.execSQL(sql);
+        db.execSQL(sql);*/
+        for(int iIndex=0; iIndex < scriptCriaBanco.length; iIndex++){
+
+            db.execSQL(scriptCriaBanco[iIndex]);
+        }
 
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        String sql = "DROP TABLE IF EXISTS Disciplina";
+/*        String sql = "DROP TABLE IF EXISTS disciplina";
         db.execSQL(sql); //Executando sql
         //Executando criando bd
-        onCreate(db);
+        onCreate(db);*/
+
+        db.execSQL(scriptApagaDB);
+
     }
 
     //METODO DE INSERÇÃO DA DISCIPLINA
-    public void inserirDisciplina(Disciplina d) {
+    public void inserirDisciplina(ContentValues  dados) {
         SQLiteDatabase db = getWritableDatabase();
-        ContentValues dadosDisciplina = pegarDisciplinas(d);
-
-        //Executando sql
-        db.insert("Disciplina", null, dadosDisciplina);
+        db.insert("disciplina", null, dados);
+        Toast.makeText( vrContexto, "Inserção realizada com sucesso!", Toast.LENGTH_SHORT).show();
 
     }
 
@@ -57,7 +68,7 @@ public class DisciplinaDAO extends SQLiteOpenHelper {
 
     //METODO QUE LISTA AS DISCIPLINAS
     public List<Disciplina> buscarDisciplinas() {
-        String sql = "SELECT * FROM Disciplina;";
+        String sql = "SELECT * FROM disciplina;";
         SQLiteDatabase db = getReadableDatabase();
         Cursor c = db.rawQuery(sql, null);
 

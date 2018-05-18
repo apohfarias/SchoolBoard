@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.apoh.schoolboard.R;
-import com.example.apoh.schoolboard.TelaAula;
+import com.example.apoh.schoolboard.telas.TelaAula;
 import com.example.apoh.schoolboard.holder.DisciplinaHolder;
 import com.example.apoh.schoolboard.model.Disciplina;
 import com.example.apoh.schoolboard.telas.TelaPrincipal;

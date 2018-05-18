@@ -1,32 +1,35 @@
 package com.example.apoh.schoolboard.telas;
 
 import android.app.Dialog;
+import android.content.ContentValues;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.apoh.schoolboard.R;
-import com.example.apoh.schoolboard.adapter.DisciplinaAdapter;
-import com.example.apoh.schoolboard.holder.ItemListaPrincipal;
+import com.example.apoh.schoolboard.banco.DisciplinaDAO;
 import com.example.apoh.schoolboard.model.Disciplina;
 
 import java.util.ArrayList;
 
 
 public class TelaPrincipal extends AppCompatActivity {
-    EditText nomeEditTxt,profTxt;
 
+    EditText campoDisciplina,campoProfessor, campoContador;
+    Button botaoSalvar = null;
+    FloatingActionButton botaoAdd = null;
+    DisciplinaDAO vrbancoDados = null;
 
     ArrayList<Disciplina> dataSource = null;
     RecyclerView lista = null;
-    FloatingActionButton btnNovaDisciplina = null;
+
 
     private RecyclerView listaMaterias;
 
@@ -35,32 +38,13 @@ public class TelaPrincipal extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_tela_principal);
 
-        FloatingActionButton botaoAdd = (FloatingActionButton)findViewById(R.id.btnNovaMateria);
+        botaoAdd = (FloatingActionButton)findViewById(R.id.btnNovaMateria);
         botaoAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 displayInputDialog();
             }
         });
-
-
-        //Adicionando fixamente os itens, exemplo
-
-
-        lista = (RecyclerView)findViewById(R.id.lista);
-        lista.setLayoutManager(new LinearLayoutManager(this));
-        lista.setItemAnimator(new DefaultItemAnimator());
-        lista.setHasFixedSize(true);
-
-        DisciplinaAdapter adapt = new DisciplinaAdapter(this, dataSource);
-        lista.setAdapter(adapt);
-
-        lista = (RecyclerView) findViewById(R.id.lista);
-
-        //return view;
-
-        //btnNovaDisciplina = (FloatingActionButton)view.findViewById(R.id.salvarBtn);
-
 
     }
 
@@ -71,45 +55,39 @@ public class TelaPrincipal extends AppCompatActivity {
         d.setTitle("Insira a Disciplina");
         d.setContentView(R.layout.input_dialog);
 
-        nomeEditTxt = (EditText) d.findViewById(R.id.nomeEditText);
-        profTxt = (EditText) d.findViewById(R.id.professorEditText);
-        Button salvarBtn = (Button) d.findViewById(R.id.salvarBtn);
+        campoDisciplina = d.findViewById(R.id.inputDialogEditDisciplina);
+        campoProfessor = d.findViewById(R.id.inputDialogEditProfessor);
+        botaoSalvar = d.findViewById(R.id.inputDialogBotaoSalvar);
+
+        vrbancoDados = new DisciplinaDAO(this, "BDDisciplina", 1);
 
         //SAVE
-        salvarBtn.setOnClickListener(new View.OnClickListener() {
+        botaoSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                //PEGA DADOS
-                String nome = nomeEditTxt.getText().toString();
-                String professor = profTxt.getText().toString();
+                ContentValues dados = new ContentValues();
+                dados.put("nomeDisciplina", campoDisciplina.getText().toString());
+                dados.put("nomeProfessor",campoProfessor.getText().toString());
+                vrbancoDados.inserirDisciplina(dados);
 
-                //SETA DADOS
-                Disciplina d = new Disciplina();
-                d.setNome_disciplina(nome);
-                d.setProfessor(professor);
-
-                dataSource.add(new Disciplina(nome, professor));
+                Log.i("Info", dados.toString());
 
 /*
                 //SIMPLE VALIDATION
-                if(nome != null && nome.length()>0)
-                {
+                if(campoDisciplina != null && campoDisciplina.length()>0) {
                     //THEN SAVE
-                    if(helper.save(d))
-                    {
+                    if(helper.save(dados)) {
                         //IF SAVED CLEAR EDITXT
-                        nomeEditTxt.setText("");
-                        profTxt.setText("");
+                        campoDisciplina.setText("");
+                        campoProfessor.setText("");
 
                         com.example.apoh.schoolboard.adapter=new MyAdapter(MainActivity.this,helper.retrieve());
                         rv.setAdapter(com.example.apoh.schoolboard.adapter);
 
-
                     }
-                }else
-                {
-                    Toast.makeText(MainActivity.this, "Name Must Not Be Empty", Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(TelaPrincipal.this, "Nome não pode ser vazio", Toast.LENGTH_SHORT).show();
                 }*/
 
             }
