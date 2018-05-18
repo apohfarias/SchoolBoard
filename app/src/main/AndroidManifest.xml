@@ -22,20 +22,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".TelaPrincipal">
+        <activity android:name=".telas.TelaPrincipal">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".holder.ItemListaPrincipal" />
+
+        <activity android:name=".TelaAula" />
+
+<!--        <activity android:name=".holder.ItemListaPrincipal" />
+        <activity android:name=".ItemListaAula"/>-->
+
         <activity
             android:name=".TelaCaptureImagem"
             android:label="@string/title_activity_tela_capture_imagem"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".TelaAula" />
-        <activity android:name=".ItemListaAula"></activity>
+
+
+
     </application>
 
 </manifest>

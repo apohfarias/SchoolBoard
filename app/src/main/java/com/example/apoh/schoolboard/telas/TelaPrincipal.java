@@ -26,6 +26,7 @@ public class TelaPrincipal extends AppCompatActivity {
 
     ArrayList<Disciplina> dataSource = null;
     RecyclerView lista = null;
+    FloatingActionButton btnNovaDisciplina = null;
 
     private RecyclerView listaMaterias;
 
@@ -45,12 +46,6 @@ public class TelaPrincipal extends AppCompatActivity {
 
         //Adicionando fixamente os itens, exemplo
 
-        dataSource.add(new Disciplina( "Silvano", "Alex"));
-        dataSource.add(new Disciplina("Engenharia de Software", "Alex"));
-        dataSource.add(new Disciplina("Computação Gráfica", "Silvano"));
-        dataSource.add(new Disciplina("Computação Gráfica", "Silvano"));
-        dataSource.add(new Disciplina("Computação Gráfica", "Silvano"));
-        dataSource.add(new Disciplina("Computação Gráfica", "Silvano"));
 
         lista = (RecyclerView)findViewById(R.id.lista);
         lista.setLayoutManager(new LinearLayoutManager(this));
@@ -61,6 +56,12 @@ public class TelaPrincipal extends AppCompatActivity {
         lista.setAdapter(adapt);
 
         lista = (RecyclerView) findViewById(R.id.lista);
+
+        //return view;
+
+        //btnNovaDisciplina = (FloatingActionButton)view.findViewById(R.id.salvarBtn);
+
+
     }
 
     //DISPLAY INPUT DIALOG
@@ -70,9 +71,9 @@ public class TelaPrincipal extends AppCompatActivity {
         d.setTitle("Insira a Disciplina");
         d.setContentView(R.layout.input_dialog);
 
-        nomeEditTxt= (EditText) d.findViewById(R.id.nomeEditText);
-        profTxt= (EditText) d.findViewById(R.id.professorEditText);
-        Button salvarBtn= (Button) d.findViewById(R.id.salvarBtn);
+        nomeEditTxt = (EditText) d.findViewById(R.id.nomeEditText);
+        profTxt = (EditText) d.findViewById(R.id.professorEditText);
+        Button salvarBtn = (Button) d.findViewById(R.id.salvarBtn);
 
         //SAVE
         salvarBtn.setOnClickListener(new View.OnClickListener() {
