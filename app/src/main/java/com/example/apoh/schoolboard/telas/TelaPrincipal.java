@@ -2,9 +2,13 @@ package com.example.apoh.schoolboard.telas;
 
 import android.app.Dialog;
 import android.content.ContentValues;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
@@ -14,7 +18,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.apoh.schoolboard.R;
+import com.example.apoh.schoolboard.adapter.DisciplinaAdapter;
 import com.example.apoh.schoolboard.banco.DisciplinaDAO;
+import com.example.apoh.schoolboard.holder.ItemListaPrincipal;
 import com.example.apoh.schoolboard.model.Disciplina;
 
 import java.util.ArrayList;
@@ -22,23 +28,24 @@ import java.util.ArrayList;
 
 public class TelaPrincipal extends AppCompatActivity {
 
-    EditText campoDisciplina,campoProfessor, campoContador;
+    private Context contexto;
+    EditText campoDisciplina, campoProfessor, campoContador;
     Button botaoSalvar = null;
     FloatingActionButton botaoAdd = null;
     DisciplinaDAO vrbancoDados = null;
 
-    ArrayList<Disciplina> dataSource = null;
     RecyclerView lista = null;
-
-
-    private RecyclerView listaMaterias;
+    ArrayList<ItemListaPrincipal> dataSource = null ;
+    ArrayList<Disciplina> disciplinas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_tela_principal);
 
-        botaoAdd = (FloatingActionButton)findViewById(R.id.btnNovaMateria);
+
+
+        botaoAdd = (FloatingActionButton) findViewById(R.id.btnNovaMateria);
         botaoAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,12 +53,40 @@ public class TelaPrincipal extends AppCompatActivity {
             }
         });
 
+        listarDisciplinas(lista);
+
+    }
+
+    public void gravarDisciplinas(View v){
+        vrbancoDados = new DisciplinaDAO(this, "BDSchoolBoard", 1);
+        ContentValues dados = new ContentValues();
+        dados.put("nomeDisciplina", campoDisciplina.getText().toString());
+        dados.put("nomeProfessor", campoProfessor.getText().toString());
+        vrbancoDados.inserirDisciplina(dados);
+
+        Log.i("Info", dados.toString());
+
+
+    }
+
+    public void listarDisciplinas(View v){
+        vrbancoDados = new DisciplinaDAO(this, "BDSchoolBoard", 1);
+
+        disciplinas = vrbancoDados.buscarDisciplinas();
+
+        lista = findViewById(R.id.lista);
+        lista.setLayoutManager(new LinearLayoutManager(this));
+        lista.setItemAnimator(new DefaultItemAnimator());
+        lista.setHasFixedSize(true);
+
+
+        DisciplinaAdapter adapt = new DisciplinaAdapter(this, disciplinas);
+        lista.setAdapter(adapt);
     }
 
     //DISPLAY INPUT DIALOG
-    private void displayInputDialog()
-    {
-        Dialog d=new Dialog(this);
+    private void displayInputDialog() {
+        Dialog d = new Dialog(this);
         d.setTitle("Insira a Disciplina");
         d.setContentView(R.layout.input_dialog);
 
@@ -59,19 +94,13 @@ public class TelaPrincipal extends AppCompatActivity {
         campoProfessor = d.findViewById(R.id.inputDialogEditProfessor);
         botaoSalvar = d.findViewById(R.id.inputDialogBotaoSalvar);
 
-        vrbancoDados = new DisciplinaDAO(this, "BDDisciplina", 1);
 
-        //SAVE
+        //BOTÃO SALVAR
         botaoSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                gravarDisciplinas(v);
 
-                ContentValues dados = new ContentValues();
-                dados.put("nomeDisciplina", campoDisciplina.getText().toString());
-                dados.put("nomeProfessor",campoProfessor.getText().toString());
-                vrbancoDados.inserirDisciplina(dados);
-
-                Log.i("Info", dados.toString());
 
 /*
                 //SIMPLE VALIDATION
@@ -82,9 +111,6 @@ public class TelaPrincipal extends AppCompatActivity {
                         campoDisciplina.setText("");
                         campoProfessor.setText("");
 
-                        com.example.apoh.schoolboard.adapter=new MyAdapter(MainActivity.this,helper.retrieve());
-                        rv.setAdapter(com.example.apoh.schoolboard.adapter);
-
                     }
                 }else {
                     Toast.makeText(TelaPrincipal.this, "Nome não pode ser vazio", Toast.LENGTH_SHORT).show();
@@ -94,6 +120,7 @@ public class TelaPrincipal extends AppCompatActivity {
         });
 
         d.show();
+
     }
 
     @Override

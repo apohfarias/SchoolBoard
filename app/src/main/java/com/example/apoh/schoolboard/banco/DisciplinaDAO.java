@@ -67,22 +67,22 @@ public class DisciplinaDAO extends SQLiteOpenHelper {
     }
 
     //METODO QUE LISTA AS DISCIPLINAS
-    public List<Disciplina> buscarDisciplinas() {
-        String sql = "SELECT * FROM disciplina;";
+    public ArrayList<Disciplina> buscarDisciplinas() {
+        //String sql = "SELECT * FROM disciplina;";
         SQLiteDatabase db = getReadableDatabase();
-        Cursor c = db.rawQuery(sql, null);
+        Cursor c = db.query("disciplina", new String[]{"nomeDisciplina", "nomeProfessor"},null,null,null,null,null);
 
-        List<Disciplina> disciplinas = new ArrayList<Disciplina>();
+        ArrayList<Disciplina> disciplinas = new ArrayList<Disciplina>();
 
         // loop  de todas as linhas e adicionando à lista
         if (c.moveToFirst()) {
             do {
                 Disciplina d = new Disciplina();
 
-                d.setId(c.getString(c.getColumnIndex("id")));
-                d.setNome_disciplina(c.getString(c.getColumnIndex("nome")));
+               // d.setId(c.getString(c.getColumnIndex("_id")));
+                d.setNome_disciplina(c.getString(c.getColumnIndex("nomeDisciplina")));
                 d.setProfessor(c.getString(c.getColumnIndex("nomeProfessor")));
-                d.setDataCriacao(c.getString(c.getColumnIndex("dataCriacao")));
+               // d.setDataCriacao(c.getString(c.getColumnIndex("dataCriacao")));
 
                 // adicionando a lista de disciplinas
                 disciplinas.add(d);

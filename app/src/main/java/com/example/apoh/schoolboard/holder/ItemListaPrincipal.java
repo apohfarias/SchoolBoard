@@ -34,5 +34,29 @@ public class ItemListaPrincipal {
         contador = sContador;
 
     }
+
+    public String getDisciplina() {
+        return disciplina;
+    }
+
+    public void setDisciplina(String disciplina) {
+        this.disciplina = disciplina;
+    }
+
+    public String getProfessor() {
+        return professor;
+    }
+
+    public void setProfessor(String professor) {
+        this.professor = professor;
+    }
+
+    public String getContador() {
+        return contador;
+    }
+
+    public void setContador(String contador) {
+        this.contador = contador;
+    }
 }
 

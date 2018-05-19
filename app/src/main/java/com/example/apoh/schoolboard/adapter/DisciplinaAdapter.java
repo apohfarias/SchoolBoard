@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.apoh.schoolboard.R;
+import com.example.apoh.schoolboard.holder.ItemListaPrincipal;
 import com.example.apoh.schoolboard.telas.TelaAula;
 import com.example.apoh.schoolboard.holder.DisciplinaHolder;
 import com.example.apoh.schoolboard.model.Disciplina;
@@ -39,7 +40,6 @@ public class DisciplinaAdapter extends RecyclerView.Adapter<DisciplinaHolder> {
     @Override
     public void onBindViewHolder(@NonNull DisciplinaHolder holder, final int position) {
         Disciplina item = lista.get(position);
-
 
         holder.getTextoDisciplina().setText(item.getNome_disciplina());
         holder.getTextoProfessor().setText(item.getProfessor());
