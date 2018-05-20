@@ -9,16 +9,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.apoh.schoolboard.R;
 
 public class TelaAula extends AppCompatActivity {
-    Button btnCapturar, btnGaleria;
-    //ImageView imageView;
+
+    TextView setarProfessor, setarDisciplina;
     private ImageView foto = null;
-
-
-    final int REQUEST_CODE_GALLERY = 999;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +24,8 @@ public class TelaAula extends AppCompatActivity {
         setContentView(R.layout.activity_tela_aula);
 
         foto = (ImageView)findViewById(R.id.imageView2);
+        setarDisciplina = findViewById(R.id.TelaAulaDisciplina);
+        setarProfessor = findViewById(R.id.TelaAulaProfessor);
 
     }
 
