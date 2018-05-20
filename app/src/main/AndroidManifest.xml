@@ -35,12 +35,6 @@
 <!--        <activity android:name=".holder.ItemListaPrincipal" />
         <activity android:name=".ItemListaAula"/>-->
 
-        <activity
-            android:name=".TelaCaptureImagem"
-            android:label="@string/title_activity_tela_capture_imagem"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-
 
     </application>
 
