@@ -3,7 +3,6 @@ package com.example.apoh.schoolboard.banco;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
@@ -11,7 +10,6 @@ import android.widget.Toast;
 import com.example.apoh.schoolboard.model.Disciplina;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class DisciplinaDAO extends SQLiteOpenHelper {
     String[] scriptCriaBanco = {"create table disciplina(_id integer primary key autoincrement, nomeDisciplina text not null, nomeProfessor text not null, dataCriacao date);"};
@@ -55,6 +53,17 @@ public class DisciplinaDAO extends SQLiteOpenHelper {
         db.insert("disciplina", null, dados);
         Toast.makeText( vrContexto, "Inserção realizada com sucesso!", Toast.LENGTH_SHORT).show();
 
+        //SIMPLE VALIDATION
+       /* if (campoDisciplina != null && campoDisciplina.length() > 0) {
+            //THEN SAVE
+            if (dadossalvos) {
+                //IF SAVED CLEAR EDITXT
+                campoDisciplina.setText("");
+                campoProfessor.setText("");
+            }
+        } else {
+            Toast.makeText(vrContexto, "Nome não pode ser vazio", Toast.LENGTH_SHORT).show();
+        }*/
     }
 
     //MÉTODO QUE PEGA  OS DADOS DA DISCIPLINA

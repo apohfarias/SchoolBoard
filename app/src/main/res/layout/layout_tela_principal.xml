@@ -24,6 +24,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/layout_item_lista_principal"/>
 
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/btnNovaMateria"
         android:layout_width="56dp"
@@ -39,6 +40,7 @@
         app:layout_constraintStart_toStartOf="@+id/lista"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.972"
+
         app:srcCompat="@drawable/ic_add_black_24dp"/>
 
 </android.support.constraint.ConstraintLayout>

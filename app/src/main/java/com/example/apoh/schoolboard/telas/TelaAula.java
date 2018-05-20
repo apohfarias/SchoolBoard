@@ -17,6 +17,7 @@ public class TelaAula extends AppCompatActivity {
     //ImageView imageView;
     private ImageView foto = null;
 
+
     final int REQUEST_CODE_GALLERY = 999;
 
     @Override

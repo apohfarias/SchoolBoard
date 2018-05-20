@@ -53,7 +53,7 @@ public class DisciplinaAdapter extends RecyclerView.Adapter<DisciplinaHolder> {
             public void onClick(View view) {
 
                 contexto = view.getContext();
-                Intent intent = new Intent(contexto, TelaPrincipal.class);
+                Intent intent = new Intent(contexto, TelaAula.class);
                 String posicao = Integer.toString(position);
                 Log.d("posicao", posicao);
 

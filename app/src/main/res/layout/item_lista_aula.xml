@@ -13,7 +13,7 @@
         android:layout_height="176dp">
 
         <TextView
-            android:id="@+id/textDataAula"
+            android:id="@+id/TelaItemAulaData"
             android:layout_width="94dp"
             android:layout_height="23dp"
             android:layout_marginStart="8dp"
@@ -29,11 +29,12 @@
             android:layout_height="24dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:text="conteúdo da aula"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.026"
-            app:layout_constraintStart_toEndOf="@+id/textDataAula"
-            tools:layout_editor_absoluteY="8dp" />
+            app:layout_constraintStart_toEndOf="@+id/TelaItemAulaData"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <HorizontalScrollView
             android:layout_width="358dp"
@@ -62,7 +63,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/ic_launcher_background" />
+                    app:srcCompat="@mipmap/ic_launcher" />
 
                 <ImageView
                     android:id="@+id/imageView3"
@@ -76,14 +77,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/ic_add_black_24dp" />
+                    app:srcCompat="@mipmap/ic_launcher" />
 
                 <ImageView
                     android:id="@+id/imageView5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/ic_launcher_foreground" />
+                    app:srcCompat="@mipmap/ic_launcher" />
             </LinearLayout>
         </HorizontalScrollView>
 

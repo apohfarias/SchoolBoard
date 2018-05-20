@@ -35,14 +35,13 @@ public class TelaPrincipal extends AppCompatActivity {
     DisciplinaDAO vrbancoDados = null;
 
     RecyclerView lista = null;
-    ArrayList<ItemListaPrincipal> dataSource = null ;
+    ArrayList<ItemListaPrincipal> dataSource = null;
     ArrayList<Disciplina> disciplinas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_tela_principal);
-
 
 
         botaoAdd = (FloatingActionButton) findViewById(R.id.btnNovaMateria);
@@ -57,7 +56,7 @@ public class TelaPrincipal extends AppCompatActivity {
 
     }
 
-    public void gravarDisciplinas(View v){
+    public void gravarDisciplinas(View v) {
         vrbancoDados = new DisciplinaDAO(this, "BDSchoolBoard", 1);
         ContentValues dados = new ContentValues();
         dados.put("nomeDisciplina", campoDisciplina.getText().toString());
@@ -66,10 +65,9 @@ public class TelaPrincipal extends AppCompatActivity {
 
         Log.i("Info", dados.toString());
 
-
     }
 
-    public void listarDisciplinas(View v){
+    public void listarDisciplinas(View v) {
         vrbancoDados = new DisciplinaDAO(this, "BDSchoolBoard", 1);
 
         disciplinas = vrbancoDados.buscarDisciplinas();
@@ -78,7 +76,6 @@ public class TelaPrincipal extends AppCompatActivity {
         lista.setLayoutManager(new LinearLayoutManager(this));
         lista.setItemAnimator(new DefaultItemAnimator());
         lista.setHasFixedSize(true);
-
 
         DisciplinaAdapter adapt = new DisciplinaAdapter(this, disciplinas);
         lista.setAdapter(adapt);
@@ -100,22 +97,6 @@ public class TelaPrincipal extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 gravarDisciplinas(v);
-
-
-/*
-                //SIMPLE VALIDATION
-                if(campoDisciplina != null && campoDisciplina.length()>0) {
-                    //THEN SAVE
-                    if(helper.save(dados)) {
-                        //IF SAVED CLEAR EDITXT
-                        campoDisciplina.setText("");
-                        campoProfessor.setText("");
-
-                    }
-                }else {
-                    Toast.makeText(TelaPrincipal.this, "Nome não pode ser vazio", Toast.LENGTH_SHORT).show();
-                }*/
-
             }
         });
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TelaAula">
+    tools:context=".telas.TelaAula">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar2"
@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/materia"
+        android:id="@+id/TelaAulaDisciplina"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -40,7 +40,7 @@
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/professor"
+        android:id="@+id/TelaAulaProfessor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -59,12 +59,11 @@
         android:id="@+id/buttonEditar"
         android:layout_width="87dp"
         android:layout_height="36dp"
-        android:text="Capturar"
-        android:onClick="capturaImagem"
         android:nestedScrollingEnabled="false"
+        android:text="Editar"
+        tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="269dp"
-        tools:layout_editor_absoluteY="7dp"
-        tools:ignore="MissingConstraints" />
+        tools:layout_editor_absoluteY="7dp" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
@@ -88,12 +87,13 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:clickable="true"
+        android:onClick="capturaImagem"
         app:layout_constraintBottom_toBottomOf="@+id/recyclerView"
         app:layout_constraintEnd_toEndOf="@+id/recyclerView"
         app:layout_constraintHorizontal_bias="0.961"
         app:layout_constraintStart_toStartOf="@+id/recyclerView"
         app:layout_constraintTop_toTopOf="@+id/recyclerView"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/ic_add_black_24dp" />
+        app:srcCompat="@mipmap/ic_launcher" />
 
 </android.support.constraint.ConstraintLayout>

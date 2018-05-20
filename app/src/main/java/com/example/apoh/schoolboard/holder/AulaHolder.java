@@ -9,25 +9,25 @@ import android.widget.TextView;
 import com.example.apoh.schoolboard.R;
 
 public class AulaHolder extends RecyclerView.ViewHolder{
-    TextView textoNome = null;
+    TextView textoConteudoAula = null;
     TextView textoDataCriacao = null;
     ImageView imageFoto = null; //Ver como setar a imagem
 
     public AulaHolder(View itemView) {
         super(itemView);
 
-        textoNome = (TextView)itemView.findViewById(R.id.textAula);
-        textoDataCriacao = (TextView)itemView.findViewById(R.id.textDataAula);
+        textoConteudoAula = (TextView)itemView.findViewById(R.id.TelaItemAulaConteudoAula);
+        textoDataCriacao = (TextView)itemView.findViewById(R.id.TelaItemAulaData);
         imageFoto = (ImageView)itemView.findViewById(R.id.imageView2);
 
     }
 
     public TextView getTextoNome() {
-        return textoNome;
+        return textoConteudoAula;
     }
 
     public void setTextoNome(TextView textoNome) {
-        this.textoNome = textoNome;
+        this.textoConteudoAula = textoNome;
     }
 
     public TextView getTextoDataCriacao() {
