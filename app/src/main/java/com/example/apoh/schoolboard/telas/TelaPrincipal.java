@@ -22,6 +22,7 @@ import com.example.apoh.schoolboard.adapter.DisciplinaAdapter;
 import com.example.apoh.schoolboard.banco.DisciplinaDAO;
 import com.example.apoh.schoolboard.holder.ItemListaPrincipal;
 import com.example.apoh.schoolboard.model.Disciplina;
+import com.example.apoh.schoolboard.adapter.*;
 
 import java.util.ArrayList;
 
@@ -35,7 +36,7 @@ public class TelaPrincipal extends AppCompatActivity {
     DisciplinaDAO vrbancoDados = null;
 
     RecyclerView lista = null;
-    ArrayList<ItemListaPrincipal> dataSource = null;
+    //ArrayList<ItemListaPrincipal> dataSource = null;
     ArrayList<Disciplina> disciplinas;
 
     @Override
@@ -54,6 +55,19 @@ public class TelaPrincipal extends AppCompatActivity {
 
         listarDisciplinas(lista);
 
+    }
+
+    private AdapterListener criaListener(){
+        return new AdapterListener(){
+            @Override
+            public void celulaClicada(View view, int posicao){
+                //chama outra tela
+                contexto = view.getContext();
+                Intent intent = new Intent(contexto, TelaAula.class);
+                contexto.startActivity(intent);
+
+            }
+        };
     }
 
     public void gravarDisciplinas(View v) {
@@ -77,7 +91,7 @@ public class TelaPrincipal extends AppCompatActivity {
         lista.setItemAnimator(new DefaultItemAnimator());
         lista.setHasFixedSize(true);
 
-        DisciplinaAdapter adapt = new DisciplinaAdapter(this, disciplinas);
+        DisciplinaAdapter adapt = new DisciplinaAdapter(this, disciplinas, criaListener());
         lista.setAdapter(adapt);
     }
 

@@ -66,7 +66,7 @@
         tools:layout_editor_absoluteY="7dp" />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/recyclerViewAulas"
         android:layout_width="368dp"
         android:layout_height="495dp"
         android:layout_marginEnd="8dp"
@@ -88,11 +88,11 @@
         android:layout_marginStart="8dp"
         android:clickable="true"
         android:onClick="capturaImagem"
-        app:layout_constraintBottom_toBottomOf="@+id/recyclerView"
-        app:layout_constraintEnd_toEndOf="@+id/recyclerView"
+        app:layout_constraintBottom_toBottomOf="@+id/recyclerViewAulas"
+        app:layout_constraintEnd_toEndOf="@+id/recyclerViewAulas"
         app:layout_constraintHorizontal_bias="0.961"
-        app:layout_constraintStart_toStartOf="@+id/recyclerView"
-        app:layout_constraintTop_toTopOf="@+id/recyclerView"
+        app:layout_constraintStart_toStartOf="@+id/recyclerViewAulas"
+        app:layout_constraintTop_toTopOf="@+id/recyclerViewAulas"
         app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/ic_add_black_24dp" />
 

@@ -21,12 +21,13 @@ import java.util.ArrayList;
 public class DisciplinaAdapter extends RecyclerView.Adapter<DisciplinaHolder> {
     Context contexto = null;
     ArrayList<Disciplina> lista = null;
+    AdapterListener listener = null;
 
-    public DisciplinaAdapter(Context contexto, ArrayList<Disciplina> lista) {
 
+    public DisciplinaAdapter(Context contexto, ArrayList<Disciplina> lista, AdapterListener listener) {
         this.contexto = contexto;
         this.lista = lista;
-
+        this.listener = listener;
     }
 
     @NonNull
@@ -38,30 +39,19 @@ public class DisciplinaAdapter extends RecyclerView.Adapter<DisciplinaHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull DisciplinaHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final DisciplinaHolder holder, final int position) {
         Disciplina item = lista.get(position);
 
         holder.getTextoDisciplina().setText(item.getNome_disciplina());
         holder.getTextoProfessor().setText(item.getProfessor());
-/*
-        holder.getTextoContador().setText(item.getDataCriacao());
-*/
-
-        //Quando o item é clicado
-        holder.getTextoProfessor().setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
+                listener.celulaClicada(holder.itemView, position);
 
-                contexto = view.getContext();
-                Intent intent = new Intent(contexto, TelaAula.class);
-                String posicao = Integer.toString(position);
-                Log.d("posicao", posicao);
-
-                intent.putExtra("Disciplina", lista.get(position).getNome_disciplina());
-
-                contexto.startActivity(intent);
             }
         });
+
     }
 
     @Override

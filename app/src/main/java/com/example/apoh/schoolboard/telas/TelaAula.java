@@ -16,14 +16,14 @@ import com.example.apoh.schoolboard.R;
 public class TelaAula extends AppCompatActivity {
 
     TextView setarProfessor, setarDisciplina;
-    private ImageView foto = null;
+    private ImageView setarFoto = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_aula);
 
-        foto = (ImageView)findViewById(R.id.imageView2);
+        setarFoto = findViewById(R.id.TelaItemAulaImage1);
         setarDisciplina = findViewById(R.id.TelaAulaDisciplina);
         setarProfessor = findViewById(R.id.TelaAulaProfessor);
 
@@ -42,12 +42,10 @@ public class TelaAula extends AppCompatActivity {
 
             if (bundle != null) {
                 Bitmap imagem = (Bitmap)bundle.get("data");
-                foto.setImageBitmap(imagem);
+                setarFoto.setImageBitmap(imagem);
 
             }
         }
     }
-
-
 
 }
