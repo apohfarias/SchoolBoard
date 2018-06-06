@@ -1,7 +1,7 @@
 package com.example.apoh.schoolboard.model;
 
 public class Disciplina {
-    private String id;
+    private Integer id;
     private String nome_disciplina;
     private String professor;
     private String dataCriacao;
@@ -16,18 +16,20 @@ public class Disciplina {
         this.professor = professor;
     }
 
-    public Disciplina(String id, String nome, String professor) {
-        this.setId(id);
+    public Disciplina(Integer id, String nome, String professor) {
+        this.id=id;
         this.nome_disciplina = nome;
         this.professor = professor;
     }
 
     //GETTERS E SETTERS
-    public String getId() {
-        return id;
+
+
+    public Integer getId() {
+        return this.id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

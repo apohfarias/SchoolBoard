@@ -27,9 +27,6 @@ public class DisciplinaAdapter extends RecyclerView.Adapter<DisciplinaHolder> {
     ArrayList<Disciplina> lista = null;
     AdapterListener listener = null;
     private AlertDialog alerta;
-    DisciplinaDAO vrbancoDados;
-
-
 
     public DisciplinaAdapter(Context contexto, ArrayList<Disciplina> lista, AdapterListener listener) {
         this.contexto = contexto;
@@ -49,6 +46,7 @@ public class DisciplinaAdapter extends RecyclerView.Adapter<DisciplinaHolder> {
     public void onBindViewHolder(@NonNull final DisciplinaHolder holder, final int position) {
         Disciplina item = lista.get(position);
 
+
         holder.getTextoDisciplina().setText(item.getNome_disciplina());
         holder.getTextoProfessor().setText(item.getProfessor());
 
@@ -63,17 +61,22 @@ public class DisciplinaAdapter extends RecyclerView.Adapter<DisciplinaHolder> {
 
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
-            public boolean onLongClick(View view) {
+            public boolean onLongClick(final View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(contexto);
-                builder.setTitle("Tem certeza de suas ações?");
+                builder.setTitle("Tem certeza disso?");
                 //Definição da mensagem
                 builder.setMessage("Apagar " + lista.get(position).getNome_disciplina());
                 //define um botão como positivo
                 builder.setPositiveButton("Apagar", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
                         //NetworkUtils.Apagar(lista.get(position));
-                        //vrbancoDados.deletarDisciplina(lista.get(position));
+
                         Toast.makeText(contexto, lista.get(position).getNome_disciplina() +" Apagada", Toast.LENGTH_SHORT).show();
+                        DisciplinaDAO vrbancoDados = new DisciplinaDAO(contexto, "BDSchoolBoard",1);
+                        vrbancoDados.deletarDisciplina(lista.get(position).getNome_disciplina());
+                        notifyItemRemoved(position);
+
+
                     }
                 });
                 //define um botão como negativo.

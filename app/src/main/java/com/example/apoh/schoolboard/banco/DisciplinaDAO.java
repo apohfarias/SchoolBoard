@@ -12,7 +12,7 @@ import com.example.apoh.schoolboard.model.Disciplina;
 import java.util.ArrayList;
 
 public class DisciplinaDAO extends SQLiteOpenHelper {
-    String[] scriptCriaBanco = {"create table disciplina(_id integer primary key autoincrement, nomeDisciplina text not null, nomeProfessor text not null, dataCriacao date);"};
+    String[] scriptCriaBanco = {"create table disciplina(_id integer primary key autoincrement not null, nomeDisciplina text not null, nomeProfessor text not null, dataCriacao date);"};
     public final String scriptApagaDB = "DROP TABLE IF EXISTS disciplina";
 
     Context vrContexto = null;
@@ -68,7 +68,7 @@ public class DisciplinaDAO extends SQLiteOpenHelper {
             do {
                 Disciplina d = new Disciplina();
 
-               // d.setId(c.getString(c.getColumnIndex("_id")));
+                //d.setId(c.getString(c.getColumnIndex("_id")));
                 d.setNome_disciplina(c.getString(c.getColumnIndex("nomeDisciplina")));
                 d.setProfessor(c.getString(c.getColumnIndex("nomeProfessor")));
                // d.setDataCriacao(c.getString(c.getColumnIndex("dataCriacao")));
@@ -86,12 +86,12 @@ public class DisciplinaDAO extends SQLiteOpenHelper {
     }
 
     //METODO QUE DELETA DISCIPLINA
-    public void deletarDisciplina(Disciplina d) {
+    public void deletarDisciplina(String id) {
         SQLiteDatabase db = getWritableDatabase();
-        String[] params = {d.getId().toString()};
+        String[] params = {id.toString()};
 
         //Executando sql
-        db.delete("disciplina", "id = ?", params);
+        db.delete("disciplina", "nomeDisciplina=?", params);
     }
 
     //METODO QUE ALTERA/EDITA DISCIPLINA
@@ -101,6 +101,6 @@ public class DisciplinaDAO extends SQLiteOpenHelper {
         String[] params = {d.getId().toString()};
 
         //Executando sql
-        db.update("Disciplina", dadosDisciplina, "id = ?", params);
+        db.update("Disciplina", dadosDisciplina, "id=?", params);
     }
 }

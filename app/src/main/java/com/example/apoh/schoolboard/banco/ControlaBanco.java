@@ -83,7 +83,7 @@ public class ControlaBanco {
 
         Disciplina disciplina = new Disciplina();
         //disciplina.setId(c.getInt(c.getColumnIndex(banco.getKeyId())));
-        disciplina.setId(c.getString(c.getColumnIndex(CriaBanco.getKeyId())));
+        disciplina.setId(c.getInt(c.getColumnIndex(CriaBanco.getKeyId())));
         disciplina.setNome_disciplina(c.getString(c.getColumnIndex(CriaBanco.getNomeDisciplina())));
         disciplina.setProfessor(c.getString(c.getColumnIndex(CriaBanco.getPROFESSOR())));
         disciplina.setDataCriacao(c.getString(c.getColumnIndex(CriaBanco.getKeyCriadoEm())));
@@ -125,7 +125,7 @@ public class ControlaBanco {
             do {
                 Disciplina disciplina = new Disciplina();
 
-                disciplina.setId(c.getString(c.getColumnIndex(CriaBanco.getKeyId())));
+                disciplina.setId(c.getInt(c.getColumnIndex(CriaBanco.getKeyId())));
                 disciplina.setNome_disciplina(c.getString(c.getColumnIndex(CriaBanco.getNomeDisciplina())));
                 disciplina.setProfessor(c.getString(c.getColumnIndex(CriaBanco.getPROFESSOR())));
                 disciplina.setDataCriacao(c.getString(c.getColumnIndex(CriaBanco.getKeyCriadoEm())));
