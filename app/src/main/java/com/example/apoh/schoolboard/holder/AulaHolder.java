@@ -2,8 +2,10 @@ package com.example.apoh.schoolboard.holder;
 
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.apoh.schoolboard.R;
@@ -13,12 +15,20 @@ public class AulaHolder extends RecyclerView.ViewHolder{
     TextView textoDataCriacao = null;
     ImageView imageFoto = null; //Ver como setar a imagem
 
+    TextView nameProfes, nameDisci;
+    RelativeLayout parentLayout;
+
     public AulaHolder(View itemView) {
         super(itemView);
 
         textoConteudoAula = (TextView)itemView.findViewById(R.id.TelaItemAulaConteudoAula);
         textoDataCriacao = (TextView)itemView.findViewById(R.id.TelaItemAulaData);
-        imageFoto = (ImageView)itemView.findViewById(R.id.imageView2);
+        imageFoto = (ImageView)itemView.findViewById(R.id.imageView3);
+
+        //Para setar o nome da materia na tela de aula
+        nameProfes = itemView.findViewById(R.id.TelaAulaProfessor);
+        nameDisci = itemView.findViewById(R.id.TelaAulaDisciplina);
+        parentLayout = itemView.findViewById(R.id.parent_layout);
 
     }
 
@@ -38,4 +48,27 @@ public class AulaHolder extends RecyclerView.ViewHolder{
         this.textoDataCriacao = textoDataCriacao;
     }
 
+    public TextView getNameProfes() {
+        return nameProfes;
+    }
+
+    public void setNameProfes(TextView nameProfes) {
+        this.nameProfes = nameProfes;
+    }
+
+    public TextView getNameDisci() {
+        return nameDisci;
+    }
+
+    public void setNameDisci(TextView nameDisci) {
+        this.nameDisci = nameDisci;
+    }
+
+    public RelativeLayout getParentLayout() {
+        return parentLayout;
+    }
+
+    public void setParentLayout(RelativeLayout parentLayout) {
+        this.parentLayout = parentLayout;
+    }
 }

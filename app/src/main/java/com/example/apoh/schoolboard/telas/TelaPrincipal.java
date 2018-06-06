@@ -30,6 +30,7 @@ import java.util.ArrayList;
 public class TelaPrincipal extends AppCompatActivity {
 
     private Context contexto;
+    String[] professor, disciplina; //campo da telaAula
     EditText campoDisciplina, campoProfessor, campoContador;
     Button botaoSalvar = null;
     FloatingActionButton botaoAdd = null;
@@ -64,6 +65,8 @@ public class TelaPrincipal extends AppCompatActivity {
                 //chama outra tela
                 contexto = view.getContext();
                 Intent intent = new Intent(contexto, TelaAula.class);
+/*                intent.putExtra("Materia",disciplina[posicao]);
+                intent.putExtra("Professor",professor[posicao]);*/
                 contexto.startActivity(intent);
 
             }
@@ -76,6 +79,7 @@ public class TelaPrincipal extends AppCompatActivity {
         dados.put("nomeDisciplina", campoDisciplina.getText().toString());
         dados.put("nomeProfessor", campoProfessor.getText().toString());
         vrbancoDados.inserirDisciplina(dados);
+        listarDisciplinas(v);
 
         Log.i("Info", dados.toString());
 
@@ -92,6 +96,7 @@ public class TelaPrincipal extends AppCompatActivity {
         lista.setHasFixedSize(true);
 
         DisciplinaAdapter adapt = new DisciplinaAdapter(this, disciplinas, criaListener());
+        adapt.notifyItemInserted(disciplinas.size());
         lista.setAdapter(adapt);
     }
 

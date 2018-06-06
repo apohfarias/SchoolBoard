@@ -247,7 +247,7 @@ public class ControlaBanco {
         SQLiteDatabase db = banco.getWritableDatabase();
 
         ContentValues valores = new ContentValues();
-        valores.put(CriaBanco.getNomeAula(), aula.getNome_aula());
+        valores.put(CriaBanco.getNomeAula(), aula.getNomeAula());
         valores.put(CriaBanco.getKeyCriadoEm(), aula.getDataCriacao());
 
         // insert row
@@ -276,7 +276,7 @@ public class ControlaBanco {
                 Aula aula = new Aula();
 
                 aula.setId(c.getString(c.getColumnIndex(CriaBanco.getKeyId())));
-                aula.setNome_aula(c.getString(c.getColumnIndex(CriaBanco.getNomeAula())));
+                aula.setNomeAula(c.getString(c.getColumnIndex(CriaBanco.getNomeAula())));
                 aula.setDataCriacao(c.getString(c.getColumnIndex(CriaBanco.getKeyCriadoEm())));
 
                 // adicionando a lista de disciplinas
@@ -295,7 +295,7 @@ public class ControlaBanco {
         SQLiteDatabase db = banco.getWritableDatabase();
 
         ContentValues valores = new ContentValues();
-        valores.put(CriaBanco.getNomeAula(), aula.getNome_aula());
+        valores.put(CriaBanco.getNomeAula(), aula.getNomeAula());
 
         //atualiza linha
         return db.update(CriaBanco.getTabelaAula(), valores, CriaBanco.getKeyId() + " = ?",

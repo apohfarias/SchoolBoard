@@ -5,66 +5,72 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
+
 import com.example.apoh.schoolboard.model.Aula;
+import com.example.apoh.schoolboard.model.Disciplina;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class AulaDAO extends SQLiteOpenHelper{
-    public AulaDAO(Context context) {
-        super(context, "schoolboard", null, 1);
+    String[] scriptCriaBanco = {"create table aula(_id integer primary key autoincrement, nomeAula text not null, imagem blob not null, dataCriacao date);" };
+    public final String scriptApagaDB = "DROP TABLE IF EXISTS aula";
+    Context vrContexto = null;
+
+    public AulaDAO(Context context, String nome, int versao) {
+        super(context, nome, null, 1);
+        vrContexto = context;
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String sql = "CREATE TABLE Aula (id INTEGER PRIMARY KEY, " +
-                "nome TEXT NOT NULL, " +
-                "dataCriacao DATE);";
-        db.execSQL(sql);
+        for(int iIndex=0; iIndex < scriptCriaBanco.length; iIndex++){
+            db.execSQL(scriptCriaBanco[iIndex]);
+        }
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        String sql = "DROP TABLE IF EXISTS Aula";
-        db.execSQL(sql); //Executando sql
-        //Executando criando bd
-        onCreate(db);
+        db.execSQL(scriptApagaDB);
+
     }
 
     //METODO DE INSERÇÃO DA AULA
-    public void inserirDisciplina(Aula a) {
+    public void inserirAula(ContentValues  dados) {
         SQLiteDatabase db = getWritableDatabase();
-        ContentValues dadosAula = pegarAulas(a);
-
-        //Executando sql
-        db.insert("Aula", null, dadosAula);
+        db.insert("aula", null, dados);
+        Toast.makeText( vrContexto, "Inserção realizada com sucesso!", Toast.LENGTH_SHORT).show();
 
     }
+
 
     //MÉTODO QUE PEGA  OS DADOS DA AULA
     private ContentValues pegarAulas(Aula a) {
         ContentValues dadosAula  = new ContentValues();
-        dadosAula.put("Nome", a.getNome_aula());
+        dadosAula.put("nome", a.getNomeAula());
+        dadosAula.put("imagem", a.getImagem());
         dadosAula.put("dataCriacao", a.getDataCriacao());
         return dadosAula;
     }
 
-    //METODO QUE LISTA AS AULAS
-    public List<Aula> buscarAulas() {
-        String sql = "SELECT * FROM Aula;";
-        SQLiteDatabase db = getReadableDatabase();
-        Cursor c = db.rawQuery(sql, null);
 
-        List<Aula> aulas = new ArrayList<Aula>();
+    //METODO QUE LISTA AS AULAS
+    public ArrayList<Aula> buscarAulas() {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor c = db.query("aula", new String[]{"nomeAula"},null,null,null,null,null);
+
+        ArrayList<Aula> aulas = new ArrayList<Aula>();
 
         // loop  de todas as linhas e adicionando à lista
         if (c.moveToFirst()) {
             do {
                 Aula a = new Aula();
 
-                a.setId(c.getString(c.getColumnIndex("id")));
-                a.setNome_aula(c.getString(c.getColumnIndex("nome")));
-                a.setDataCriacao(c.getString(c.getColumnIndex("dataCriacao")));
+                //a.setId(c.getString(c.getColumnIndex("id")));
+                a.setNomeAula(c.getString(c.getColumnIndex("nomeAula")));
+               // a.setImagem(c.getString(c.getColumnIndex("imagem")));
+               // a.setDataCriacao(c.getString(c.getColumnIndex("dataCriacao")));
 
                 // adicionando a lista de disciplinas
                 aulas.add(a);
@@ -75,7 +81,6 @@ public class AulaDAO extends SQLiteOpenHelper{
         }
 
         return aulas;
-
     }
 
     //METODO QUE DELETA AULA
@@ -84,7 +89,7 @@ public class AulaDAO extends SQLiteOpenHelper{
         String[] params = {a.getId().toString()};
 
         //Executando sql
-        db.delete("Aula", "id = ?", params);
+        db.delete("aula", "id = ?", params);
     }
 
     //METODO QUE ALTERA/EDITA AULA
@@ -94,7 +99,7 @@ public class AulaDAO extends SQLiteOpenHelper{
         String[] params = {a.getId().toString()};
 
         //Executando sql
-        db.update("Aula", dadosAula, "id = ?", params);
+        db.update("aula", dadosAula, "id = ?", params);
     }
 
 }

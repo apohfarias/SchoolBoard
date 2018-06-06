@@ -14,6 +14,7 @@ import java.util.ArrayList;
 public class DisciplinaDAO extends SQLiteOpenHelper {
     String[] scriptCriaBanco = {"create table disciplina(_id integer primary key autoincrement, nomeDisciplina text not null, nomeProfessor text not null, dataCriacao date);"};
     public final String scriptApagaDB = "DROP TABLE IF EXISTS disciplina";
+
     Context vrContexto = null;
 
     public DisciplinaDAO(Context context, String nome, int versao) {
@@ -24,25 +25,14 @@ public class DisciplinaDAO extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-/*        String sql = "CREATE TABLE disciplina (id INTEGER PRIMARY KEY, " +
-                "nomeDisciplina TEXT NOT NULL, " +
-                "nomeProfessor TEXT, " +
-                "dataCriacao DATE);";
-        db.execSQL(sql);*/
-        for(int iIndex=0; iIndex < scriptCriaBanco.length; iIndex++){
 
+        for(int iIndex=0; iIndex < scriptCriaBanco.length; iIndex++){
             db.execSQL(scriptCriaBanco[iIndex]);
         }
-
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-/*        String sql = "DROP TABLE IF EXISTS disciplina";
-        db.execSQL(sql); //Executando sql
-        //Executando criando bd
-        onCreate(db);*/
-
         db.execSQL(scriptApagaDB);
 
     }
@@ -53,18 +43,8 @@ public class DisciplinaDAO extends SQLiteOpenHelper {
         db.insert("disciplina", null, dados);
         Toast.makeText( vrContexto, "Inserção realizada com sucesso!", Toast.LENGTH_SHORT).show();
 
-        //SIMPLE VALIDATION
-       /* if (campoDisciplina != null && campoDisciplina.length() > 0) {
-            //THEN SAVE
-            if (dadossalvos) {
-                //IF SAVED CLEAR EDITXT
-                campoDisciplina.setText("");
-                campoProfessor.setText("");
-            }
-        } else {
-            Toast.makeText(vrContexto, "Nome não pode ser vazio", Toast.LENGTH_SHORT).show();
-        }*/
     }
+
 
     //MÉTODO QUE PEGA  OS DADOS DA DISCIPLINA
     private ContentValues pegarDisciplinas(Disciplina d) {
@@ -111,7 +91,7 @@ public class DisciplinaDAO extends SQLiteOpenHelper {
         String[] params = {d.getId().toString()};
 
         //Executando sql
-        db.delete("Disciplina", "id = ?", params);
+        db.delete("disciplina", "id = ?", params);
     }
 
     //METODO QUE ALTERA/EDITA DISCIPLINA

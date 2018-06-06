@@ -22,7 +22,8 @@ public class DisciplinaAdapter extends RecyclerView.Adapter<DisciplinaHolder> {
     Context contexto = null;
     ArrayList<Disciplina> lista = null;
     AdapterListener listener = null;
-
+    String[] professor;
+    String[] disciplina;
 
     public DisciplinaAdapter(Context contexto, ArrayList<Disciplina> lista, AdapterListener listener) {
         this.contexto = contexto;
@@ -44,6 +45,7 @@ public class DisciplinaAdapter extends RecyclerView.Adapter<DisciplinaHolder> {
 
         holder.getTextoDisciplina().setText(item.getNome_disciplina());
         holder.getTextoProfessor().setText(item.getProfessor());
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
