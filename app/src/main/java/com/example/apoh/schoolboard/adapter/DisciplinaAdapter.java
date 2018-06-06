@@ -1,15 +1,19 @@
 package com.example.apoh.schoolboard.adapter;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.apoh.schoolboard.R;
+import com.example.apoh.schoolboard.banco.DisciplinaDAO;
 import com.example.apoh.schoolboard.holder.ItemListaPrincipal;
 import com.example.apoh.schoolboard.telas.TelaAula;
 import com.example.apoh.schoolboard.holder.DisciplinaHolder;
@@ -22,8 +26,10 @@ public class DisciplinaAdapter extends RecyclerView.Adapter<DisciplinaHolder> {
     Context contexto = null;
     ArrayList<Disciplina> lista = null;
     AdapterListener listener = null;
-    String[] professor;
-    String[] disciplina;
+    private AlertDialog alerta;
+    DisciplinaDAO vrbancoDados;
+
+
 
     public DisciplinaAdapter(Context contexto, ArrayList<Disciplina> lista, AdapterListener listener) {
         this.contexto = contexto;
@@ -54,7 +60,40 @@ public class DisciplinaAdapter extends RecyclerView.Adapter<DisciplinaHolder> {
             }
         });
 
+
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(contexto);
+                builder.setTitle("Tem certeza de suas ações?");
+                //Definição da mensagem
+                builder.setMessage("Apagar " + lista.get(position).getNome_disciplina());
+                //define um botão como positivo
+                builder.setPositiveButton("Apagar", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        //NetworkUtils.Apagar(lista.get(position));
+                        //vrbancoDados.deletarDisciplina(lista.get(position));
+                        Toast.makeText(contexto, lista.get(position).getNome_disciplina() +" Apagada", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                //define um botão como negativo.
+                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+                    }
+                });
+                //cria o AlertDialog
+                alerta = builder.create();
+                //Exibe
+                alerta.show();
+                return true;
+            }
+
+        });
+
     }
+
+
+
 
     @Override
     public int getItemCount() {
