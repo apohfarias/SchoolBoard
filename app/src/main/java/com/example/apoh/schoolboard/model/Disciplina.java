@@ -1,5 +1,7 @@
 package com.example.apoh.schoolboard.model;
 
+import java.text.SimpleDateFormat;
+
 public class Disciplina {
     private Integer id;
     private String nome_disciplina;
@@ -26,7 +28,7 @@ public class Disciplina {
 
 
     public Integer getId() {
-        return this.id;
+        return id;
     }
 
     public void setId(Integer id) {
@@ -50,6 +52,8 @@ public class Disciplina {
     }
 
     public String getDataCriacao() {
+
+        //return "SELECT strftime('%d-%m-%Y, date('now'));";
         return dataCriacao;
     }
 

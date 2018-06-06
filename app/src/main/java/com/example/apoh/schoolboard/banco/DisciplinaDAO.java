@@ -15,6 +15,7 @@ public class DisciplinaDAO extends SQLiteOpenHelper {
     String[] scriptCriaBanco = {"create table disciplina(_id integer primary key autoincrement not null, nomeDisciplina text not null, nomeProfessor text not null, dataCriacao date);"};
     public final String scriptApagaDB = "DROP TABLE IF EXISTS disciplina";
 
+
     Context vrContexto = null;
 
     public DisciplinaDAO(Context context, String nome, int versao) {
@@ -59,7 +60,7 @@ public class DisciplinaDAO extends SQLiteOpenHelper {
     public ArrayList<Disciplina> buscarDisciplinas() {
         //String sql = "SELECT * FROM disciplina;";
         SQLiteDatabase db = getReadableDatabase();
-        Cursor c = db.query("disciplina", new String[]{"nomeDisciplina", "nomeProfessor"},null,null,null,null,null);
+        Cursor c = db.query("disciplina", new String[]{"_id","nomeDisciplina", "nomeProfessor"},null,null,null,null,null);
 
         ArrayList<Disciplina> disciplinas = new ArrayList<Disciplina>();
 
@@ -68,10 +69,10 @@ public class DisciplinaDAO extends SQLiteOpenHelper {
             do {
                 Disciplina d = new Disciplina();
 
-                //d.setId(c.getString(c.getColumnIndex("_id")));
+                d.setId(c.getInt(c.getColumnIndex("_id")));
                 d.setNome_disciplina(c.getString(c.getColumnIndex("nomeDisciplina")));
                 d.setProfessor(c.getString(c.getColumnIndex("nomeProfessor")));
-               // d.setDataCriacao(c.getString(c.getColumnIndex("dataCriacao")));
+                //d.setDataCriacao(c.getString(c.getColumnIndex("dataCriacao")));
 
                 // adicionando a lista de disciplinas
                 disciplinas.add(d);
@@ -86,12 +87,12 @@ public class DisciplinaDAO extends SQLiteOpenHelper {
     }
 
     //METODO QUE DELETA DISCIPLINA
-    public void deletarDisciplina(String id) {
+    public void deletarDisciplina(Integer id) {
         SQLiteDatabase db = getWritableDatabase();
-        String[] params = {id.toString()};
+        String[] params = {String.valueOf(id)};
 
         //Executando sql
-        db.delete("disciplina", "nomeDisciplina=?", params);
+        db.delete("disciplina", "id=?", params);
     }
 
     //METODO QUE ALTERA/EDITA DISCIPLINA

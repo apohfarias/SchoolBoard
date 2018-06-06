@@ -73,7 +73,7 @@ public class DisciplinaAdapter extends RecyclerView.Adapter<DisciplinaHolder> {
 
                         Toast.makeText(contexto, lista.get(position).getNome_disciplina() +" Apagada", Toast.LENGTH_SHORT).show();
                         DisciplinaDAO vrbancoDados = new DisciplinaDAO(contexto, "BDSchoolBoard",1);
-                        vrbancoDados.deletarDisciplina(lista.get(position).getNome_disciplina());
+                        vrbancoDados.deletarDisciplina(lista.get(position).getId());
                         notifyItemRemoved(position);
 
 
