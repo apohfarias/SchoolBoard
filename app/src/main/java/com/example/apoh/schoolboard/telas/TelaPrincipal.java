@@ -30,7 +30,6 @@ import java.util.ArrayList;
 public class TelaPrincipal extends AppCompatActivity {
 
     private Context contexto;
-    String[] professor, disciplina; //campo da telaAula
     EditText campoDisciplina, campoProfessor, campoContador;
     Button botaoSalvar = null;
     FloatingActionButton botaoAdd = null;
@@ -103,7 +102,7 @@ public class TelaPrincipal extends AppCompatActivity {
 
     //DISPLAY INPUT DIALOG
     private void displayInputDialog() {
-        Dialog d = new Dialog(this);
+        final Dialog d = new Dialog(this);
         d.setTitle("Insira a Disciplina");
         d.setContentView(R.layout.input_dialog);
 
@@ -117,6 +116,7 @@ public class TelaPrincipal extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 gravarDisciplinas(v);
+                d.dismiss();
             }
         });
 

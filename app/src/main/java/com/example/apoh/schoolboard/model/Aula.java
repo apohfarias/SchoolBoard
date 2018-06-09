@@ -3,7 +3,7 @@ package com.example.apoh.schoolboard.model;
 public class Aula {
     private String id;
     private String nomeAula;
-    private byte[] imagem;
+    private String caminhoFoto;
     private String dataCriacao;
 
     //CONTRUTORES
@@ -46,12 +46,12 @@ public class Aula {
         this.nomeAula = nomeAula;
     }
 
-    public byte[] getImagem() {
-        return imagem;
+    public String getCaminhoFoto() {
+        return caminhoFoto;
     }
 
-    public void setImagem(byte[] imagem) {
-        this.imagem = imagem;
+    public void setCaminhoFoto(String caminhoFoto) {
+        this.caminhoFoto = caminhoFoto;
     }
 
     public String getDataCriacao() {

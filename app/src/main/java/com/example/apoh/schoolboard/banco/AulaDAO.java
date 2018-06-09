@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AulaDAO extends SQLiteOpenHelper{
-    String[] scriptCriaBanco = {"create table aula(_id integer primary key autoincrement, nomeAula text not null, imagem blob not null, dataCriacao date);" };
+    String[] scriptCriaBanco = {"create table aula(_id integer primary key autoincrement, nomeAula text not null, caminhoFoto text not null, dataCriacao date);" };
     public final String scriptApagaDB = "DROP TABLE IF EXISTS aula";
     Context vrContexto = null;
 
@@ -48,9 +48,11 @@ public class AulaDAO extends SQLiteOpenHelper{
     //MÉTODO QUE PEGA  OS DADOS DA AULA
     private ContentValues pegarAulas(Aula a) {
         ContentValues dadosAula  = new ContentValues();
+
         dadosAula.put("nome", a.getNomeAula());
-        dadosAula.put("imagem", a.getImagem());
-        dadosAula.put("dataCriacao", a.getDataCriacao());
+       //dadosAula.put("imagem", a.getImagem());
+        dadosAula.put("caminhoFoto", a.getCaminhoFoto());
+
         return dadosAula;
     }
 
@@ -69,7 +71,7 @@ public class AulaDAO extends SQLiteOpenHelper{
 
                 //a.setId(c.getString(c.getColumnIndex("id")));
                 a.setNomeAula(c.getString(c.getColumnIndex("nomeAula")));
-               // a.setImagem(c.getString(c.getColumnIndex("imagem")));
+                a.setCaminhoFoto(c.getString(c.getColumnIndex("caminhoFoto")));
                // a.setDataCriacao(c.getString(c.getColumnIndex("dataCriacao")));
 
                 // adicionando a lista de disciplinas
@@ -89,7 +91,7 @@ public class AulaDAO extends SQLiteOpenHelper{
         String[] params = {a.getId().toString()};
 
         //Executando sql
-        db.delete("aula", "id = ?", params);
+        db.delete("aula", "_id = ?", params);
     }
 
     //METODO QUE ALTERA/EDITA AULA
@@ -99,7 +101,7 @@ public class AulaDAO extends SQLiteOpenHelper{
         String[] params = {a.getId().toString()};
 
         //Executando sql
-        db.update("aula", dadosAula, "id = ?", params);
+        db.update("aula", dadosAula, "_id = ?", params);
     }
 
 }

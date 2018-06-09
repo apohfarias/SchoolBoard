@@ -69,12 +69,12 @@ public class DisciplinaAdapter extends RecyclerView.Adapter<DisciplinaHolder> {
                 //define um botão como positivo
                 builder.setPositiveButton("Apagar", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
-                        //NetworkUtils.Apagar(lista.get(position));
 
                         Toast.makeText(contexto, lista.get(position).getNome_disciplina() +" Apagada", Toast.LENGTH_SHORT).show();
                         DisciplinaDAO vrbancoDados = new DisciplinaDAO(contexto, "BDSchoolBoard",1);
-                        vrbancoDados.deletarDisciplina(lista.get(position));
+                        vrbancoDados.deletarDisciplina(lista.get(position).getId());
                         notifyItemRemoved(position);
+
                     }
                 });
                 //define um botão como negativo.

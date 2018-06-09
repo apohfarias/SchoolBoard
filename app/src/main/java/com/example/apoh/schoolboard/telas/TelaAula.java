@@ -4,6 +4,7 @@ package com.example.apoh.schoolboard.telas;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
@@ -36,19 +37,20 @@ public class TelaAula extends AppCompatActivity {
     AulaDAO vrbancoDados = null;
     EditText campoConteudo, campoData;
     public TextView nameProfes, nameDisci;
-    ImageView setarFoto = null;
+    private ImageView campoFoto;
 
     FloatingActionButton botaoAddAula = null;
     RecyclerView lista = null;
     ArrayList<Aula> aulas;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_aula);
-        //setContentView(R.layout.item_aula);
 
-        setarFoto = (ImageView) findViewById(R.id.TelaItemAulaImage1);
+        campoFoto = (ImageView) findViewById(R.id.TelaItemAulaImage1);
         nameDisci = findViewById(R.id.TelaAulaDisciplina);
         nameProfes = findViewById(R.id.TelaAulaProfessor);
 
@@ -57,6 +59,8 @@ public class TelaAula extends AppCompatActivity {
 
         nameDisci.setText(Materia);
         nameProfes.setText(Professor);
+
+        //aulas = vrbancoDados.buscarAulas();
 
         //CRIAR TELA PARA CADASTRO DA AULA E CHAMAR BTNOVAAULA
         /*botaoAddAula = (FloatingActionButton) findViewById(R.id.floatingActionButton);
@@ -76,7 +80,7 @@ public class TelaAula extends AppCompatActivity {
         ContentValues dados = new ContentValues();
         dados.put("nomeAula", campoConteudo.getText().toString());
         dados.put("dataCriacao", campoData.getText().toString());
-        //dados.put("imagem", imagem);
+        dados.put("caminhoFoto", (String) campoFoto.getTag());
 
         vrbancoDados.inserirAula(dados);
 
@@ -114,9 +118,21 @@ public class TelaAula extends AppCompatActivity {
 
             if (bundle != null) {
                 Bitmap imagem = (Bitmap) bundle.get("data");
-                setarFoto.setImageBitmap(imagem);
+                /*campoFoto.setImageBitmap(imagem);
+                campoFoto.setTag(caminhoFoto);*/
+
 
             }
+        }
+    }
+
+    public void carregaImagem(String caminhoFoto) {
+        if (caminhoFoto != null) {
+            Bitmap bitmap = BitmapFactory.decodeFile(caminhoFoto);
+            Bitmap bitmapReduzido = Bitmap.createScaledBitmap(bitmap, 300, 300, true);
+            campoFoto.setImageBitmap(bitmapReduzido);
+            campoFoto.setScaleType(ImageView.ScaleType.FIT_XY);
+            campoFoto.setTag(caminhoFoto);
         }
     }
 
