@@ -62,11 +62,13 @@ public class TelaPrincipal extends AppCompatActivity {
         return new AdapterListener(){
             @Override
             public void celulaClicada(View view, int posicao){
+
                 //chama outra tela
                 contexto = view.getContext();
                 Intent intent = new Intent(contexto, TelaAula.class);
-/*                intent.putExtra("Materia",disciplina[posicao]);
-                intent.putExtra("Professor",professor[posicao]);*/
+                intent.putExtra("Materia", disciplinas.get(posicao).getNome_disciplina());
+                intent.putExtra("Professor",disciplinas.get(posicao).getProfessor());
+
                 contexto.startActivity(intent);
 
             }

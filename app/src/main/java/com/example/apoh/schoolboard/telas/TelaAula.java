@@ -36,8 +36,8 @@ public class TelaAula extends AppCompatActivity {
 
     AulaDAO vrbancoDados = null;
     EditText campoConteudo, campoData;
+    public TextView nameProfes, nameDisci;
     FloatingActionButton botaoAddAula = null;
-    EditText campoDisciplina, campoProfessor;
     ImageView imagem;
     RecyclerView lista = null;
     ArrayList<Aula> aulas;
@@ -46,18 +46,25 @@ public class TelaAula extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_aula);
-        getIncomingIntent();
+
+        nameDisci = findViewById(R.id.TelaAulaDisciplina);
+        nameProfes = findViewById(R.id.TelaAulaProfessor);
+
+        String Materia = this.getIntent().getStringExtra("Materia");
+        String Professor = this.getIntent().getStringExtra("Professor");
+
+        nameDisci.setText(Materia);
+        nameProfes.setText(Professor);
 
         //CRIAR TELA PARA CADASTRO DA AULA E CHAMAR BTNOVAAULA
-        botaoAddAula = (FloatingActionButton) findViewById(R.id.floatingActionButton);
+        /*botaoAddAula = (FloatingActionButton) findViewById(R.id.floatingActionButton);
         botaoAddAula.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //displayInputDialog(); CRIAR CADASTRO DA AULA
             }
         });
-
-        listarAulas(lista);
+        listarAulas(lista);*/
 
     }
 
@@ -91,20 +98,20 @@ public class TelaAula extends AppCompatActivity {
     }
 
 
-    private void getIncomingIntent(){
+/*    private void getIncomingIntent(){
         Log.d(TAG, "getIncomingIntent: checking for incoming intents.");
 
         if(getIntent().hasExtra("TelaPrincipalProfessor") && getIntent().hasExtra("TelaPrincipalDisciplina")){
             Log.d(TAG, "getIncomingIntent: found intent extras.");
 
-            String textProfessor = getIntent().getStringExtra("TelaPrincipalProfessor");
-            String textDisciplina = getIntent().getStringExtra("TelaPrincipalDisciplina");
+            String textProfessor = getIntent().getStringExtra("Materia");
+            String textDisciplina = getIntent().getStringExtra("Professor");
 
             setName(textProfessor, textDisciplina);
         }
-    }
+    }*/
 
-    private void setName(String nomeProfessor, String nomeDisciplina){
+/*    private void setName(String nomeProfessor, String nomeDisciplina){
         Log.d(TAG, "setName: setting nomes to widgets.");
 
         TextView nameProfes = findViewById(R.id.TelaAulaProfessor);
@@ -113,7 +120,7 @@ public class TelaAula extends AppCompatActivity {
         TextView nameDisci = findViewById(R.id.TelaAulaDisciplina);
         nameDisci.setText(nomeDisciplina);
 
-    }
+    }*/
 
 
     public void capturaImagem(View botao) {

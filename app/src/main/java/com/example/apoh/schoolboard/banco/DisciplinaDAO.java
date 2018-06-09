@@ -89,7 +89,7 @@ public class DisciplinaDAO extends SQLiteOpenHelper {
     //METODO QUE DELETA DISCIPLINA
     public void deletarDisciplina(Integer id) {
         SQLiteDatabase db = getWritableDatabase();
-        String[] params = {String.valueOf(id)};
+        String[] params = {id.toString()};
 
         //Executando sql
         db.delete("disciplina", "id=?", params);
