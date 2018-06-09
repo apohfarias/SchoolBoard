@@ -1,6 +1,7 @@
 package com.example.apoh.schoolboard.telas;
 
 
+import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -33,11 +34,13 @@ import java.util.ArrayList;
 public class TelaAula extends AppCompatActivity {
     private static final String TAG = "TelaAula";
 
+    public static final int CODIGO_CAMERA = 567;
 
     AulaDAO vrbancoDados = null;
     EditText campoConteudo, campoData;
     public TextView nameProfes, nameDisci;
     private ImageView campoFoto;
+    private String caminhoFoto;
 
     FloatingActionButton botaoAddAula = null;
     RecyclerView lista = null;
@@ -116,13 +119,18 @@ public class TelaAula extends AppCompatActivity {
         if (dados != null) {
             Bundle bundle = dados.getExtras();
 
-            if (bundle != null) {
-                Bitmap imagem = (Bitmap) bundle.get("data");
-                /*campoFoto.setImageBitmap(imagem);
-                campoFoto.setTag(caminhoFoto);*/
-
-
+            if (resultado == Activity.RESULT_OK) {
+                if (codigo == CODIGO_CAMERA) {
+                    carregaImagem(caminhoFoto);
+                }
             }
+
+/*            if (bundle != null) {
+                Bitmap imagem = (Bitmap) bundle.get("data");
+                //campoFoto.setImageBitmap(imagem);
+                //campoFoto.setTag(caminhoFoto);
+
+            }*/
         }
     }
 
