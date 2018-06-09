@@ -37,7 +37,6 @@ public class TelaPrincipal extends AppCompatActivity {
     DisciplinaDAO vrbancoDados = null;
 
     RecyclerView lista = null;
-    //ArrayList<ItemListaPrincipal> dataSource = null;
     ArrayList<Disciplina> disciplinas;
 
     @Override

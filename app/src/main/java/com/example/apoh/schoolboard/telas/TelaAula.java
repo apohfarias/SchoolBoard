@@ -32,13 +32,13 @@ import java.util.ArrayList;
 public class TelaAula extends AppCompatActivity {
     private static final String TAG = "TelaAula";
 
-    private ImageView setarFoto = null;
 
     AulaDAO vrbancoDados = null;
     EditText campoConteudo, campoData;
     public TextView nameProfes, nameDisci;
+    ImageView setarFoto = null;
+
     FloatingActionButton botaoAddAula = null;
-    ImageView imagem;
     RecyclerView lista = null;
     ArrayList<Aula> aulas;
 
@@ -46,7 +46,9 @@ public class TelaAula extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_aula);
+        //setContentView(R.layout.item_aula);
 
+        setarFoto = (ImageView) findViewById(R.id.TelaItemAulaImage1);
         nameDisci = findViewById(R.id.TelaAulaDisciplina);
         nameProfes = findViewById(R.id.TelaAulaProfessor);
 
@@ -98,31 +100,7 @@ public class TelaAula extends AppCompatActivity {
     }
 
 
-/*    private void getIncomingIntent(){
-        Log.d(TAG, "getIncomingIntent: checking for incoming intents.");
-
-        if(getIntent().hasExtra("TelaPrincipalProfessor") && getIntent().hasExtra("TelaPrincipalDisciplina")){
-            Log.d(TAG, "getIncomingIntent: found intent extras.");
-
-            String textProfessor = getIntent().getStringExtra("Materia");
-            String textDisciplina = getIntent().getStringExtra("Professor");
-
-            setName(textProfessor, textDisciplina);
-        }
-    }*/
-
-/*    private void setName(String nomeProfessor, String nomeDisciplina){
-        Log.d(TAG, "setName: setting nomes to widgets.");
-
-        TextView nameProfes = findViewById(R.id.TelaAulaProfessor);
-        nameProfes.setText(nomeProfessor);
-
-        TextView nameDisci = findViewById(R.id.TelaAulaDisciplina);
-        nameDisci.setText(nomeDisciplina);
-
-    }*/
-
-
+    //Captura foto com a camera
     public void capturaImagem(View botao) {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(intent, 0);
@@ -135,7 +113,7 @@ public class TelaAula extends AppCompatActivity {
             Bundle bundle = dados.getExtras();
 
             if (bundle != null) {
-                Bitmap imagem = (Bitmap)bundle.get("data");
+                Bitmap imagem = (Bitmap) bundle.get("data");
                 setarFoto.setImageBitmap(imagem);
 
             }

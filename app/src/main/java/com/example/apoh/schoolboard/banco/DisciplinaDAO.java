@@ -58,7 +58,6 @@ public class DisciplinaDAO extends SQLiteOpenHelper {
 
     //METODO QUE LISTA AS DISCIPLINAS
     public ArrayList<Disciplina> buscarDisciplinas() {
-        //String sql = "SELECT * FROM disciplina;";
         SQLiteDatabase db = getReadableDatabase();
         Cursor c = db.query("disciplina", new String[]{"_id","nomeDisciplina", "nomeProfessor"},null,null,null,null,null);
 
@@ -87,12 +86,13 @@ public class DisciplinaDAO extends SQLiteOpenHelper {
     }
 
     //METODO QUE DELETA DISCIPLINA
-    public void deletarDisciplina(Integer id) {
+    public void deletarDisciplina(Disciplina id) {
         SQLiteDatabase db = getWritableDatabase();
-        String[] params = {id.toString()};
+
+        String[] params = {id.getNome_disciplina()};
 
         //Executando sql
-        db.delete("disciplina", "id=?", params);
+        db.delete("disciplina", "nomeDisciplina=?", params);
     }
 
     //METODO QUE ALTERA/EDITA DISCIPLINA
@@ -102,6 +102,6 @@ public class DisciplinaDAO extends SQLiteOpenHelper {
         String[] params = {d.getId().toString()};
 
         //Executando sql
-        db.update("Disciplina", dadosDisciplina, "id=?", params);
+        db.update("disciplina", dadosDisciplina, "id=?", params);
     }
 }
