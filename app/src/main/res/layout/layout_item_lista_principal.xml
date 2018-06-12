@@ -21,7 +21,7 @@
         <TextView
             android:id="@+id/TelaPrincipalDisciplina"
             android:layout_width="0dp"
-            android:layout_height="50dp"
+            android:layout_height="33dp"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
@@ -46,13 +46,15 @@
             android:layout_marginTop="4dp"
             android:text="Professor"
             android:textAlignment="center"
-            app:layout_constraintBottom_toTopOf="@+id/TelaPrincipalContador"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/TelaPrincipalDisciplina" />
 
-        <TextView
+<!--
+             app:layout_constraintBottom_toTopOf="@+id/TelaPrincipalContador" //é da parte d cima
+
+         <TextView
             android:id="@+id/TelaPrincipalContador"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -70,7 +72,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/TelaPrincipalProfessor"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.0" />-->
 
     </android.support.constraint.ConstraintLayout>
 

@@ -10,10 +10,11 @@ import android.widget.TextView;
 
 import com.example.apoh.schoolboard.R;
 
+
 public class AulaHolder extends RecyclerView.ViewHolder{
     TextView textoConteudoAula = null;
     TextView textoDataCriacao = null;
-    ImageView imageFoto = null; //Ver como setar a imagem
+    ImageView campoFoto = null; //Ver como setar a imagem
 
     TextView nameProfes, nameDisci;
     RelativeLayout parentLayout;
@@ -23,21 +24,44 @@ public class AulaHolder extends RecyclerView.ViewHolder{
 
         textoConteudoAula = (TextView)itemView.findViewById(R.id.TelaItemAulaConteudoAula);
         textoDataCriacao = (TextView)itemView.findViewById(R.id.TelaItemAulaData);
-        imageFoto = (ImageView)itemView.findViewById(R.id.imageView3);
+
+        //imageFoto = (ImageView)itemView.findViewById(R.id.TelaItemAulaImage1);
+
+        //dados.put("caminhoFoto", (String) campoFoto.getTag());
 
         //Para setar o nome da materia na tela de aula
         nameProfes = itemView.findViewById(R.id.TelaAulaProfessor);
         nameDisci = itemView.findViewById(R.id.TelaAulaDisciplina);
-        parentLayout = itemView.findViewById(R.id.parent_layout);
+        campoFoto = (ImageView) itemView.findViewById(R.id.TelaItemAulaImage1);
 
     }
 
+
+
+    //GETTERS E SETTERS
     public TextView getTextoNome() {
         return textoConteudoAula;
     }
 
     public void setTextoNome(TextView textoNome) {
         this.textoConteudoAula = textoNome;
+    }
+
+
+    public TextView getTextoConteudoAula() {
+        return textoConteudoAula;
+    }
+
+    public void setTextoConteudoAula(TextView textoConteudoAula) {
+        this.textoConteudoAula = textoConteudoAula;
+    }
+
+    public ImageView getCampoFoto() {
+        return campoFoto;
+    }
+
+    public void setCampoFoto(ImageView campoFoto) {
+        this.campoFoto = campoFoto;
     }
 
     public TextView getTextoDataCriacao() {

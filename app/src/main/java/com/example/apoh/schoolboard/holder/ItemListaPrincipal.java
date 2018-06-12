@@ -17,7 +17,7 @@ class ItemHolder extends RecyclerView.ViewHolder {
 
         textoDisciplina = (TextView)view.findViewById(R.id.TelaPrincipalDisciplina);
         textoProfessor = (TextView)view.findViewById(R.id.TelaPrincipalProfessor);
-        textoContador = (TextView)view.findViewById(R.id.TelaPrincipalContador);
+        //textoContador = (TextView)view.findViewById(R.id.TelaPrincipalContador);
 
     }
 }
@@ -25,13 +25,13 @@ class ItemHolder extends RecyclerView.ViewHolder {
 public class ItemListaPrincipal {
     String disciplina;
     String professor;
-    String contador;
+    //String contador;
 
     public ItemListaPrincipal(String sDisciplina, String sProfessor, String sContador){
 
         disciplina = sDisciplina;
         professor = sProfessor;
-        contador = sContador;
+        //contador = sContador;
 
     }
 
@@ -50,13 +50,13 @@ public class ItemListaPrincipal {
     public void setProfessor(String professor) {
         this.professor = professor;
     }
-
+/*
     public String getContador() {
         return contador;
     }
 
     public void setContador(String contador) {
         this.contador = contador;
-    }
+    }*/
 }
 

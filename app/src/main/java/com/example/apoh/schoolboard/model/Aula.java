@@ -1,9 +1,12 @@
 package com.example.apoh.schoolboard.model;
 
+import android.graphics.Bitmap;
+
 public class Aula {
     private String id;
     private String nomeAula;
-    private String caminhoFoto;
+    //private Bitmap caminhoFoto;
+    String caminhoFoto;
     private String dataCriacao;
 
     //CONTRUTORES
@@ -21,11 +24,19 @@ public class Aula {
         this.dataCriacao = dataCriacao;
     }
 
-
-    public Aula(String id, String nome, String dataCriacao) {
+/*
+    public Aula(String nome, String dataCriacao) {
         this.setId(id);
         this.nomeAula = nome;
         this.dataCriacao = dataCriacao;
+    }*/
+
+
+    public Aula(String nome, String dataCriacao, String caminhoFoto) {
+        this.setId(id);
+        this.nomeAula = nome;
+        this.dataCriacao = dataCriacao;
+        this.caminhoFoto = caminhoFoto;
     }
 
     //GETTERS E SETTERS

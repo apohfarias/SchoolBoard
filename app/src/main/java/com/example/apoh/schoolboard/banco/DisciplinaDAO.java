@@ -12,7 +12,19 @@ import com.example.apoh.schoolboard.model.Disciplina;
 import java.util.ArrayList;
 
 public class DisciplinaDAO extends SQLiteOpenHelper {
-    String[] scriptCriaBanco = {"create table disciplina(_id integer primary key autoincrement not null, nomeDisciplina text not null, nomeProfessor text not null, dataCriacao date);"};
+    String[] scriptCriaBanco = {
+            "create table disciplina(_id integer primary key autoincrement not null," +
+                    "nomeDisciplina text not null," +
+                    " nomeProfessor text not null," +
+                    " dataCriacao date);",
+
+            "create table aula(_id integer primary key autoincrement," +
+                    " nomeAula text not null," +
+                    " caminhoFoto text not null," +
+                    " dataCriacao date);"
+
+    };
+
     public final String scriptApagaDB = "DROP TABLE IF EXISTS disciplina";
 
 
@@ -86,11 +98,12 @@ public class DisciplinaDAO extends SQLiteOpenHelper {
     }
 
     //METODO QUE DELETA DISCIPLINA
-    public void deletarDisciplina(Integer d) {
+    public void deletarDisciplina(Disciplina d) {
         SQLiteDatabase db = getWritableDatabase();
-        String[] params = {Integer.toString(d)};
+        String[] params = {Integer.toString(d.getId())};
         //Executando sql
         db.delete("disciplina", "_id=?", params);
+
     }
 
     //METODO QUE ALTERA/EDITA DISCIPLINA

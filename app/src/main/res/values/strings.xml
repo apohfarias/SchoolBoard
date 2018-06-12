@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Schoolboard</string>
+    <string name="title_activity_item_aula">ItemAula</string>
 
 </resources>

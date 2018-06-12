@@ -16,7 +16,7 @@ public class DisciplinaHolder extends RecyclerView.ViewHolder{
 
         textoDisciplina = (TextView)itemView.findViewById(R.id.TelaPrincipalDisciplina);
         textoProfessor = (TextView)itemView.findViewById(R.id.TelaPrincipalProfessor);
-        textoContador = (TextView)itemView.findViewById(R.id.TelaPrincipalContador);
+        //textoContador = (TextView)itemView.findViewById(R.id.TelaPrincipalContador);
     }
 
     public TextView getTextoDisciplina() {
@@ -35,11 +35,11 @@ public class DisciplinaHolder extends RecyclerView.ViewHolder{
         this.textoProfessor = textoProfessor;
     }
 
-    public TextView getTextoContador() {
+/*    public TextView getTextoContador() {
         return textoContador;
     }
 
     public void setTextoContador(TextView textoContador) {
         this.textoContador = textoContador;
-    }
+    }*/
 }

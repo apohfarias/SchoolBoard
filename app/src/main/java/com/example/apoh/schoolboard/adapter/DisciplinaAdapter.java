@@ -70,10 +70,11 @@ public class DisciplinaAdapter extends RecyclerView.Adapter<DisciplinaHolder> {
                 builder.setPositiveButton("Apagar", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
 
-                        Toast.makeText(contexto, lista.get(position).getNome_disciplina() +" Apagada", Toast.LENGTH_SHORT).show();
                         DisciplinaDAO vrbancoDados = new DisciplinaDAO(contexto, "BDSchoolBoard",1);
-                        vrbancoDados.deletarDisciplina(lista.get(position).getId());
+                        vrbancoDados.deletarDisciplina(lista.get(position));
                         notifyItemRemoved(position);
+                        Toast.makeText(contexto, lista.get(position).getNome_disciplina() +" Apagada", Toast.LENGTH_SHORT).show();
+
 
                     }
                 });

@@ -14,25 +14,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AulaDAO extends SQLiteOpenHelper{
-    String[] scriptCriaBanco = {"create table aula(_id integer primary key autoincrement, nomeAula text not null, caminhoFoto text not null, dataCriacao date);" };
+/*    String[] scriptCriaBanco = {"create table aula(_id integer primary key autoincrement, nomeAula text not null, caminhoFoto text not null, dataCriacao date);" };
     public final String scriptApagaDB = "DROP TABLE IF EXISTS aula";
-    Context vrContexto = null;
+    Context vrContexto = null;*/
 
     public AulaDAO(Context context, String nome, int versao) {
         super(context, nome, null, 1);
-        vrContexto = context;
     }
 
     @Override
-    public void onCreate(SQLiteDatabase db) {
-        for(int iIndex=0; iIndex < scriptCriaBanco.length; iIndex++){
-            db.execSQL(scriptCriaBanco[iIndex]);
-        }
-    }
+    public void onCreate(SQLiteDatabase db) { }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL(scriptApagaDB);
+        String sql = "DROP TABLE IF EXISTS aula";
+        db.execSQL(sql);
+        onCreate(db);
 
     }
 
@@ -40,7 +37,8 @@ public class AulaDAO extends SQLiteOpenHelper{
     public void inserirAula(ContentValues  dados) {
         SQLiteDatabase db = getWritableDatabase();
         db.insert("aula", null, dados);
-        Toast.makeText( vrContexto, "Inserção realizada com sucesso!", Toast.LENGTH_SHORT).show();
+
+        //Toast.makeText( vrContexto, "Inserção realizada com sucesso!", Toast.LENGTH_SHORT).show();
 
     }
 

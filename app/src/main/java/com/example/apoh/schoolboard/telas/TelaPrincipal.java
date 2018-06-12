@@ -30,7 +30,8 @@ import java.util.ArrayList;
 public class TelaPrincipal extends AppCompatActivity {
 
     private Context contexto;
-    EditText campoDisciplina, campoProfessor, campoContador;
+    EditText campoDisciplina, campoProfessor;
+
     Button botaoSalvar = null;
     FloatingActionButton botaoAdd = null;
     DisciplinaDAO vrbancoDados = null;

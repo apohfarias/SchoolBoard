@@ -47,6 +47,7 @@ public class AulaAdapter extends RecyclerView.Adapter<AulaHolder>{
 
         holder.getTextoNome().setText(item.getNomeAula());
         holder.getTextoDataCriacao().setText(item.getDataCriacao());
+        //holder.getCampoFoto().setImageBitmap(item.getCaminhoFoto()); ver essa parte aqui
 
     }
 
