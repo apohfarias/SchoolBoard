@@ -47,8 +47,8 @@ public class AulaDAO extends SQLiteOpenHelper{
     private ContentValues pegarAulas(Aula a) {
         ContentValues dadosAula  = new ContentValues();
 
-        dadosAula.put("nome", a.getNomeAula());
-       //dadosAula.put("imagem", a.getImagem());
+       // dadosAula.put("nomeAula", a.getNomeAula());
+       // dadosAula.put("dataCriacao", a.getDataCriacao());
         dadosAula.put("caminhoFoto", a.getCaminhoFoto());
 
         return dadosAula;
@@ -58,7 +58,7 @@ public class AulaDAO extends SQLiteOpenHelper{
     //METODO QUE LISTA AS AULAS
     public ArrayList<Aula> buscarAulas() {
         SQLiteDatabase db = getReadableDatabase();
-        Cursor c = db.query("aula", new String[]{"nomeAula"},null,null,null,null,null);
+        Cursor c = db.query("aula", new String[]{"caminhoFoto"},null,null,null,null,null);
 
         ArrayList<Aula> aulas = new ArrayList<Aula>();
 
@@ -67,9 +67,8 @@ public class AulaDAO extends SQLiteOpenHelper{
             do {
                 Aula a = new Aula();
 
-                //a.setId(c.getString(c.getColumnIndex("id")));
-                a.setNomeAula(c.getString(c.getColumnIndex("nomeAula")));
-                a.setCaminhoFoto(c.getString(c.getColumnIndex("caminhoFoto")));
+                //a.setNomeAula(c.getString(c.getColumnIndex("nomeAula")));
+                a.setCaminhoFoto(c.getBlob(c.getColumnIndex("caminhoFoto")));
                // a.setDataCriacao(c.getString(c.getColumnIndex("dataCriacao")));
 
                 // adicionando a lista de disciplinas

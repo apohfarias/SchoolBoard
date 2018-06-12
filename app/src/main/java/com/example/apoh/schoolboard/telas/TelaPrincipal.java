@@ -44,7 +44,6 @@ public class TelaPrincipal extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_tela_principal);
 
-
         botaoAdd = (FloatingActionButton) findViewById(R.id.btnNovaMateria);
         botaoAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,7 +74,7 @@ public class TelaPrincipal extends AppCompatActivity {
     }
 
     public void gravarDisciplinas(View v) {
-        vrbancoDados = new DisciplinaDAO(this, "BDSchoolBoard", 1);
+        vrbancoDados = new DisciplinaDAO(this);
         ContentValues dados = new ContentValues();
         dados.put("nomeDisciplina", campoDisciplina.getText().toString());
         dados.put("nomeProfessor", campoProfessor.getText().toString());
@@ -87,7 +86,7 @@ public class TelaPrincipal extends AppCompatActivity {
     }
 
     public void listarDisciplinas(View v) {
-        vrbancoDados = new DisciplinaDAO(this, "BDSchoolBoard", 1);
+        vrbancoDados = new DisciplinaDAO(this);
 
         disciplinas = vrbancoDados.buscarDisciplinas();
 

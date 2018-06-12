@@ -4,11 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:id="@+id/item_aula"
+    android:layout_margin="5dp"
+    android:focusable="auto"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
     tools:context=".holder.ItemAula">
+
 
     <ImageView
         android:id="@+id/TelaItemAula_ImageView"
         android:layout_width="match_parent"
         android:layout_height="201dp"
         android:src="@mipmap/ic_launcher_round" />
+
+
 </LinearLayout>

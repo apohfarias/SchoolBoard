@@ -45,9 +45,24 @@ public class AulaAdapter extends RecyclerView.Adapter<AulaHolder>{
         Aula item = lista.get(position);
         Log.d(TAG, "onBindViewHolder: called.");
 
-        holder.getTextoNome().setText(item.getNomeAula());
+        holder.getTextoConteudoAula().setText(item.getNomeAula());
         holder.getTextoDataCriacao().setText(item.getDataCriacao());
-        //holder.getCampoFoto().setImageBitmap(item.getCaminhoFoto()); ver essa parte aqui
+
+        //holder.getImageViewFoto().setImageBitmap(item.getCaminhoFoto()); //ver essa parte aqui
+
+
+        /*
+         dono.setText(carro.getDono());
+        fotoArray = carro.getFoto();
+
+        File imgFile = new  File("SEU FILE PATH");
+        if(imgFile.exists()){
+            Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+            ImageView myImage = (ImageView) findViewById(R.id.imageviewTest);
+            myImage.setImageBitmap(myBitmap);
+
+        }
+         */
 
     }
 

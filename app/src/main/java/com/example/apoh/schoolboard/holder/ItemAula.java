@@ -16,6 +16,7 @@ class ItemAulaHolder extends RecyclerView.ViewHolder {
     ItemAulaHolder(View view){
         super(view);
         campoFoto = (ImageView) itemView.findViewById(R.id.TelaItemAula_ImageView);
+        //textoDisciplina = (TextView)view.findViewById(R.id.TelaPrincipalDisciplina);
     }
 }
 

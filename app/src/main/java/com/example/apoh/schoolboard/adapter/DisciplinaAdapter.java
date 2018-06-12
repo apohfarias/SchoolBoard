@@ -26,6 +26,7 @@ public class DisciplinaAdapter extends RecyclerView.Adapter<DisciplinaHolder> {
     Context contexto = null;
     ArrayList<Disciplina> lista = null;
     AdapterListener listener = null;
+    DisciplinaDAO vrbancoDados = null;
     private AlertDialog alerta;
 
     public DisciplinaAdapter(Context contexto, ArrayList<Disciplina> lista, AdapterListener listener) {
@@ -45,7 +46,6 @@ public class DisciplinaAdapter extends RecyclerView.Adapter<DisciplinaHolder> {
     @Override
     public void onBindViewHolder(@NonNull final DisciplinaHolder holder, final int position) {
         Disciplina item = lista.get(position);
-
 
         holder.getTextoDisciplina().setText(item.getNome_disciplina());
         holder.getTextoProfessor().setText(item.getProfessor());
@@ -70,11 +70,10 @@ public class DisciplinaAdapter extends RecyclerView.Adapter<DisciplinaHolder> {
                 builder.setPositiveButton("Apagar", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
 
-                        DisciplinaDAO vrbancoDados = new DisciplinaDAO(contexto, "BDSchoolBoard",1);
+                        vrbancoDados = new DisciplinaDAO(contexto);
                         vrbancoDados.deletarDisciplina(lista.get(position));
-                        notifyItemRemoved(position);
                         Toast.makeText(contexto, lista.get(position).getNome_disciplina() +" Apagada", Toast.LENGTH_SHORT).show();
-
+                        notifyItemRemoved(position);
 
                     }
                 });
@@ -83,6 +82,7 @@ public class DisciplinaAdapter extends RecyclerView.Adapter<DisciplinaHolder> {
                     public void onClick(DialogInterface arg0, int arg1) {
                     }
                 });
+
                 //cria o AlertDialog
                 alerta = builder.create();
                 //Exibe

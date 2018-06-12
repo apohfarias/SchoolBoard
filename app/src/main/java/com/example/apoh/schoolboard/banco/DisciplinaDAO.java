@@ -19,8 +19,8 @@ public class DisciplinaDAO extends SQLiteOpenHelper {
                     " dataCriacao date);",
 
             "create table aula(_id integer primary key autoincrement," +
-                    " nomeAula text not null," +
-                    " caminhoFoto text not null," +
+                    " nomeAula text," +
+                    " caminhoFoto blob," +
                     " dataCriacao date);"
 
     };
@@ -30,11 +30,10 @@ public class DisciplinaDAO extends SQLiteOpenHelper {
 
     Context vrContexto = null;
 
-    public DisciplinaDAO(Context context, String nome, int versao) {
-        super(context, nome, null, 1);
+    public DisciplinaDAO(Context context) {
+        super(context, "BDSchoolBoard", null,1);
         vrContexto = context;
     }
-
 
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -64,7 +63,7 @@ public class DisciplinaDAO extends SQLiteOpenHelper {
         ContentValues dadosDisciplina = new ContentValues();
         dadosDisciplina.put("Nome", d.getNome_disciplina());
         dadosDisciplina.put("Professor", d.getProfessor());
-        dadosDisciplina.put("dataCriacao", d.getDataCriacao());
+        //dadosDisciplina.put("dataCriacao", d.getDataCriacao());
         return dadosDisciplina;
     }
 
