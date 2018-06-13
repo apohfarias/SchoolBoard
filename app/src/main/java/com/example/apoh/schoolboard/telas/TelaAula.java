@@ -240,4 +240,19 @@ public class TelaAula extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    public void carregarFoto (String localFoto){
+        Aula itemAula;
+        //Carregar arquivo de imagem
+        Bitmap imagemFoto = BitmapFactory.decodeFile(localFoto);
+
+        //Gerar imagem reduzida
+        Bitmap imagemFotoReduzida = Bitmap.createScaledBitmap(imagemFoto, 100, 100, true);
+
+        //Guarda o caminho da foto do aluno
+        //itemAula.setFoto(localFoto);
+
+        //Atualiza a imagem exibida na tela
+        //foto.setImageBitmap(imagemFotoReduzida);
+    }
 }
