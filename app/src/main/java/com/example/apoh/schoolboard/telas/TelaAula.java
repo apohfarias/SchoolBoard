@@ -42,8 +42,8 @@ public class TelaAula extends AppCompatActivity {
 
 
     AulaDAO vrbancoDados = null;
-    EditText campoConteudo = null;
-    EditText campoData = null;
+/*    EditText campoConteudo = null;
+    EditText campoData = null;*/
     TextView nameProfes = null;
     TextView nameDisci = null;
     ImageView campoFoto = null;
@@ -52,8 +52,9 @@ public class TelaAula extends AppCompatActivity {
     Uri imageUri = null;
     FloatingActionButton botaoFoto = null;
 
-    RecyclerView lista = null;
+    RecyclerView recyclerViewAulas = null;
     ArrayList<Aula> aulas;
+    Context contexto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,17 +64,9 @@ public class TelaAula extends AppCompatActivity {
         //O erro esta aqui
         //Não tem como acessar esse ImageView porque ele não esta neste layout.
         //Como pega o layout para usar aquele imageview? Sendo que esse imageView é de um recycler
+
         campoFoto = findViewById(R.id.TelaItemAula_ImageView);
-
-
-/*        imgFile = new  File(String.valueOf(imageUri));
-        if(imgFile.exists()){
-            Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-            //ImageView myImage = (ImageView) findViewById(R.id.TelaItemAula_ImageView);
-            campoFoto = findViewById(R.id.TelaItemAula_ImageView);
-            campoFoto.setImageBitmap(myBitmap);
-
-        }*/
+        //String foto = this.getIntent().getStringExtra("caminhoFoto");
 
 
 
@@ -85,9 +78,11 @@ public class TelaAula extends AppCompatActivity {
         String Materia = this.getIntent().getStringExtra("Materia");
         String Professor = this.getIntent().getStringExtra("Professor");
 
+        //Exibe no text view da telaAula
         nameDisci.setText(Materia);
         nameProfes.setText(Professor);
 
+        //Chamando a funcao de capturar
         botaoFoto = (FloatingActionButton) findViewById(R.id.TelaAula_floatingActionButton);
         botaoFoto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,17 +91,17 @@ public class TelaAula extends AppCompatActivity {
             }
         });
 
-        listarAulas(lista);
+        listarAulas(recyclerViewAulas);
     }
 
-    public void gravarAulas(View v) {
-        vrbancoDados = new AulaDAO(this, "BDSchoolBoard", 1);
+    public void gravarAulas() {
+        vrbancoDados = new AulaDAO(this);
 
         ContentValues dados = new ContentValues();
-        dados.put("nomeAula", campoConteudo.getText().toString());
-        dados.put("dataCriacao", campoData.getText().toString());
-        dados.put("caminhoFoto", (String) campoFoto.getTag());
-        campoFoto.setImageBitmap(BitmapFactory.decodeFile(caminhoFoto));
+/*        dados.put("nomeAula", campoConteudo.getText().toString());
+        dados.put("dataCriacao", campoData.getText().toString());*/
+        dados.put("caminhoFoto", (String) caminhoFoto);
+        //campoFoto.setImageBitmap(BitmapFactory.decodeFile(caminhoFoto));
 
         vrbancoDados.inserirAula(dados);
 
@@ -115,54 +110,31 @@ public class TelaAula extends AppCompatActivity {
     }
 
     public void listarAulas(View v) {
-        vrbancoDados = new AulaDAO(this, "BDSchoolBoard", 1);
+        vrbancoDados = new AulaDAO(this);
 
         aulas = vrbancoDados.buscarAulas();
 
-        lista = findViewById(R.id.recyclerViewAulas);
-        lista.setLayoutManager(new LinearLayoutManager(this));
-        lista.setItemAnimator(new DefaultItemAnimator());
-        lista.setHasFixedSize(true);
+        recyclerViewAulas = findViewById(R.id.recyclerViewAulas);
+        recyclerViewAulas.setLayoutManager(new LinearLayoutManager(this));
+        recyclerViewAulas.setItemAnimator(new DefaultItemAnimator());
+        recyclerViewAulas.setHasFixedSize(true);
 
         AulaAdapter adapt = new AulaAdapter(this, aulas);
         adapt.notifyItemInserted(aulas.size());
-        lista.setAdapter(adapt);
+
+        recyclerViewAulas.setAdapter(adapt);
+
+        //campoFoto = adapt.imagem;
+
+
     }
 
-
-    //Captura foto com a camera
-/*    public void capturaImagem(View botao) {
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        caminhoFoto = getExternalFilesDir(null) + "/" + System.currentTimeMillis() + ".jpg";
-
-        File arquivoFoto = new File(caminhoFoto);
-        imageUri = Uri.fromFile(arquivoFoto);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(arquivoFoto));
-
-        startActivityForResult(intent, 100);
-
-        Intent intentCamera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        caminhoFoto = getExternalFilesDir(null) + "/" + System.currentTimeMillis() + ".jpg";
-        File arquivoFoto = new File(caminhoFoto);
-        intentCamera.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(arquivoFoto));
-        startActivityForResult(intentCamera, CODIGO_CAMERA);
-    }*/
-
-    public void carregaImagem(String caminhoFoto) {
-        if (caminhoFoto != null) {
-            Bitmap bitmap = BitmapFactory.decodeFile(caminhoFoto);
-            Bitmap bitmapReduzido = Bitmap.createScaledBitmap(bitmap, 300, 300, true);
-            campoFoto.setImageBitmap(bitmapReduzido);
-            campoFoto.setScaleType(ImageView.ScaleType.FIT_XY);
-            campoFoto.setTag(caminhoFoto);
-        }
-    }
 
 
     public void capturaImagem() {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        final Context meuContexto = this;
+        contexto = this;
 
         builder.setTitle("Escolha a origem de sua foto");
         builder.setItems(new CharSequence[]{"Galeria", "Câmera"}, new DialogInterface.OnClickListener() {
@@ -174,6 +146,12 @@ public class TelaAula extends AppCompatActivity {
                         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                         intent.setType("image/*");
                         Intent chooser = Intent.createChooser(intent, "Escolha uma foto");
+
+                        caminhoFoto = getExternalFilesDir(null) + "/" + System.currentTimeMillis() + ".jpg";
+                        File foto0 = new File(caminhoFoto);
+                        imageUri = FileProvider.getUriForFile(contexto, BuildConfig.APPLICATION_ID + ".provider", foto0);
+                        chooser.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+
                         startActivityForResult(chooser, 0);
 
                         break;
@@ -182,12 +160,10 @@ public class TelaAula extends AppCompatActivity {
 
                         Intent intentTirarFoto = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                         caminhoFoto = getExternalFilesDir(null) + "/" + System.currentTimeMillis() + ".jpg";
-                        File foto = new File(caminhoFoto);
-                        imageUri = FileProvider.getUriForFile(meuContexto, BuildConfig.APPLICATION_ID + ".provider", foto);
+                        File foto1 = new File(caminhoFoto);
+                        imageUri = FileProvider.getUriForFile(contexto, BuildConfig.APPLICATION_ID + ".provider", foto1);
                         intentTirarFoto.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
                         startActivityForResult(intentTirarFoto,1);
-                        //Picasso.get().load(imageUri).into(caminhoFoto);
-                        Picasso.LoadedFrom.MEMORY.equals(imageUri); //tavlez der certo
 
                         break;
                 }
@@ -204,7 +180,6 @@ public class TelaAula extends AppCompatActivity {
             switch (requestCode) {
                 case 0:
 
-
                     Uri selectedImageUri = data.getData();
 
                     try {
@@ -214,15 +189,20 @@ public class TelaAula extends AppCompatActivity {
 
                         Bitmap bitmap;
                         bitmap = android.provider.MediaStore.Images.Media.getBitmap(cr, selectedImage);
+                        //campoFoto.setImageBitmap(bitmap);
+                        //Picasso picasso = null;
+                        //picasso.load(data.getData()).into(campoFoto);
+                        gravarAulas();
 
-                        campoFoto.setImageBitmap(bitmap);
+                        Toast.makeText(this, selectedImage.toString(),
+                                Toast.LENGTH_LONG).show();
+
 
                     } catch (Exception e) {
                         Toast.makeText(this, "Falha ao carregar da galeria!", Toast.LENGTH_SHORT)
                                 .show();
                         Log.e("Camera", e.toString());
                     }
-
 
                     break;
 
@@ -235,7 +215,10 @@ public class TelaAula extends AppCompatActivity {
                         Bitmap bitmap;
                         try {
                             bitmap = android.provider.MediaStore.Images.Media.getBitmap(cr, selectedImage);
-                            campoFoto.setImageBitmap(bitmap);
+                            //campoFoto.setImageBitmap(bitmap);
+
+                            gravarAulas();
+
                             Toast.makeText(this, selectedImage.toString(),
                                     Toast.LENGTH_LONG).show();
                         } catch (Exception e) {
@@ -248,7 +231,6 @@ public class TelaAula extends AppCompatActivity {
             }
         }
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

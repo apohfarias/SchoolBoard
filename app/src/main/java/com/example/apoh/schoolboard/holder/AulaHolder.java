@@ -12,14 +12,12 @@ import com.example.apoh.schoolboard.R;
 
 
 public class AulaHolder extends RecyclerView.ViewHolder{
-    TextView textoConteudoAula = null;
+/*    TextView textoConteudoAula = null;
     TextView textoDataCriacao = null;
     TextView nameProfes = null;
-    TextView nameDisci = null;
+    TextView nameDisci = null;*/
 
-    ImageView imageViewFoto; //Ver como setar a imagem
-    byte[] fotoArray;
-
+    public ImageView imageViewFoto; //Ver como setar a imagem
 
     public AulaHolder(View itemView) {
         super(itemView);
@@ -30,13 +28,12 @@ public class AulaHolder extends RecyclerView.ViewHolder{
         nameDisci = itemView.findViewById(R.id.TelaAulaDisciplina);*/
 
         imageViewFoto = (ImageView) itemView.findViewById(R.id.TelaItemAula_ImageView);
-        //fotoArray = carro.getFoto();
 
     }
 
     //GETTERS E SETTERS
 
-    public TextView getTextoConteudoAula() {
+/*    public TextView getTextoConteudoAula() {
         return textoConteudoAula;
     }
 
@@ -50,14 +47,6 @@ public class AulaHolder extends RecyclerView.ViewHolder{
 
     public void setTextoDataCriacao(TextView textoDataCriacao) {
         this.textoDataCriacao = textoDataCriacao;
-    }
-
-    public ImageView getImageViewFoto() {
-        return imageViewFoto;
-    }
-
-    public void setImageViewFoto(ImageView imageViewFoto) {
-        this.imageViewFoto = imageViewFoto;
     }
 
     public TextView getNameProfes() {
@@ -75,12 +64,15 @@ public class AulaHolder extends RecyclerView.ViewHolder{
     public void setNameDisci(TextView nameDisci) {
         this.nameDisci = nameDisci;
     }
-
-    public byte[] getFotoArray() {
-        return fotoArray;
+    */
+    public ImageView getImageViewFoto() {
+        return imageViewFoto;
     }
 
-    public void setFotoArray(byte[] fotoArray) {
-        this.fotoArray = fotoArray;
+    public void setImageViewFoto(ImageView imageViewFoto) {
+        this.imageViewFoto = imageViewFoto;
     }
+
+
+
 }

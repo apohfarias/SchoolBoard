@@ -15,11 +15,13 @@ import java.util.List;
 
 public class AulaDAO extends SQLiteOpenHelper{
 /*    String[] scriptCriaBanco = {"create table aula(_id integer primary key autoincrement, nomeAula text not null, caminhoFoto text not null, dataCriacao date);" };
-    public final String scriptApagaDB = "DROP TABLE IF EXISTS aula";
-    Context vrContexto = null;*/
+    public final String scriptApagaDB = "DROP TABLE IF EXISTS aula";*/
 
-    public AulaDAO(Context context, String nome, int versao) {
-        super(context, nome, null, 1);
+    Context vrContexto = null;
+
+    public AulaDAO(Context context) {
+        super(context, "BDSchoolBoard", null,1);
+        vrContexto = context;
     }
 
     @Override
@@ -68,9 +70,9 @@ public class AulaDAO extends SQLiteOpenHelper{
                 Aula a = new Aula();
 
                 //a.setNomeAula(c.getString(c.getColumnIndex("nomeAula")));
-                a.setCaminhoFoto(c.getBlob(c.getColumnIndex("caminhoFoto")));
+                a.setFoto(c.getString(c.getColumnIndex("caminhoFoto")));
                // a.setDataCriacao(c.getString(c.getColumnIndex("dataCriacao")));
-
+                //String caminho = a.getCaminhoFoto();
                 // adicionando a lista de disciplinas
                 aulas.add(a);
             } while (c.moveToNext());

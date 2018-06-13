@@ -16,7 +16,8 @@
         android:id="@+id/TelaItemAula_ImageView"
         android:layout_width="match_parent"
         android:layout_height="201dp"
-        android:src="@mipmap/ic_launcher_round" />
+        android:src="@mipmap/ic_launcher_round"
+        android:visibility="visible" />
 
 
 </LinearLayout>

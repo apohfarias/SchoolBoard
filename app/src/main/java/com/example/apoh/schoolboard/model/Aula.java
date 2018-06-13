@@ -5,8 +5,8 @@ import android.graphics.Bitmap;
 public class Aula {
     private String id;
     private String nomeAula;
-    private byte[] caminhoFoto;
-    //String caminhoFoto;
+    //private byte[] caminhoFoto;
+    String foto;
     private String dataCriacao;
 
     //CONTRUTORES
@@ -32,11 +32,11 @@ public class Aula {
     }*/
 
 
-    public Aula(String nome, String dataCriacao, byte[] caminhoFoto) {
+    public Aula(String nome, String dataCriacao, String foto) {
         this.setId(id);
         this.nomeAula = nome;
         this.dataCriacao = dataCriacao;
-        this.caminhoFoto = caminhoFoto;
+        this.foto = foto;
     }
 
     //GETTERS E SETTERS
@@ -57,12 +57,12 @@ public class Aula {
         this.nomeAula = nomeAula;
     }
 
-    public byte[] getCaminhoFoto() {
-        return caminhoFoto;
+    public String getCaminhoFoto() {
+        return foto;
     }
 
-    public void setCaminhoFoto(byte[] caminhoFoto) {
-        this.caminhoFoto = caminhoFoto;
+    public void setCaminhoFoto(String caminhoFoto) {
+        this.foto = caminhoFoto;
     }
 
     public String getDataCriacao() {
@@ -71,5 +71,13 @@ public class Aula {
 
     public void setDataCriacao(String dataCriacao) {
         this.dataCriacao = dataCriacao;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
 }
