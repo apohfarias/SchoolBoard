@@ -13,8 +13,10 @@
         android:required="false" />
 
     <uses-permission android:name="ANDROID.PERMISSION.CAMERA" />
+    <uses-permission android:name="ANDROID.PERMISSION.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="ANDROID.PERMISSION.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="ANDROID.PERMISSION.INTERNET"/>
+    <uses-permission android:name="ANDROID.PERMISSION_GRANTED"/>
 
     <application
         android:allowBackup="true"
@@ -41,15 +43,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".telas.TelaAula" />
-
-        <!--
-            <activity android:name=".holder.ItemListaPrincipal" />
-        <activity android:name=".ItemListaAula"/>
-        -->
-<!--
-        <activity
-            android:name=".holder.ItemAula"
-            android:label="@string/title_activity_item_aula"></activity>-->
 
     </application>
 

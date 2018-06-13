@@ -1,18 +1,22 @@
 package com.example.apoh.schoolboard.telas;
 
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -26,6 +30,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.example.apoh.schoolboard.BuildConfig;
 import com.example.apoh.schoolboard.R;
@@ -35,15 +40,14 @@ import com.example.apoh.schoolboard.model.Aula;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class TelaAula extends AppCompatActivity {
-    //private static final String TAG = "TelaAula";
-
 
     AulaDAO vrbancoDados = null;
-/*    EditText campoConteudo = null;
-    EditText campoData = null;*/
+
     TextView nameProfes = null;
     TextView nameDisci = null;
     ImageView campoFoto = null;
@@ -51,6 +55,7 @@ public class TelaAula extends AppCompatActivity {
     String caminhoFoto = null;
     Uri imageUri = null;
     FloatingActionButton botaoFoto = null;
+    Picasso picasso = null;
 
     RecyclerView recyclerViewAulas = null;
     ArrayList<Aula> aulas;
@@ -65,9 +70,8 @@ public class TelaAula extends AppCompatActivity {
         //Não tem como acessar esse ImageView porque ele não esta neste layout.
         //Como pega o layout para usar aquele imageview? Sendo que esse imageView é de um recycler
 
-        campoFoto = findViewById(R.id.TelaItemAula_ImageView);
+        //campoFoto = findViewById(R.id.TelaItemAula_ImageView);
         //String foto = this.getIntent().getStringExtra("caminhoFoto");
-
 
 
         //Encontrando os texView pra setar os nomes da outra tela
@@ -94,12 +98,12 @@ public class TelaAula extends AppCompatActivity {
         listarAulas(recyclerViewAulas);
     }
 
+
+
     public void gravarAulas() {
         vrbancoDados = new AulaDAO(this);
 
         ContentValues dados = new ContentValues();
-/*        dados.put("nomeAula", campoConteudo.getText().toString());
-        dados.put("dataCriacao", campoData.getText().toString());*/
         dados.put("caminhoFoto", (String) caminhoFoto);
         //campoFoto.setImageBitmap(BitmapFactory.decodeFile(caminhoFoto));
 
@@ -124,11 +128,7 @@ public class TelaAula extends AppCompatActivity {
 
         recyclerViewAulas.setAdapter(adapt);
 
-        //campoFoto = adapt.imagem;
-
-
     }
-
 
 
     public void capturaImagem() {
@@ -163,7 +163,7 @@ public class TelaAula extends AppCompatActivity {
                         File foto1 = new File(caminhoFoto);
                         imageUri = FileProvider.getUriForFile(contexto, BuildConfig.APPLICATION_ID + ".provider", foto1);
                         intentTirarFoto.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
-                        startActivityForResult(intentTirarFoto,1);
+                        startActivityForResult(intentTirarFoto, 1);
 
                         break;
                 }
@@ -183,19 +183,19 @@ public class TelaAula extends AppCompatActivity {
                     Uri selectedImageUri = data.getData();
 
                     try {
+                        campoFoto = findViewById(R.id.TelaItemAula_ImageView); //mudei aqui
+
                         Uri selectedImage = selectedImageUri;
-                        //getContentResolver().notifyChange(selectedImage, null);
+                        getContentResolver().notifyChange(selectedImage, null);
                         ContentResolver cr = getContentResolver();
 
                         Bitmap bitmap;
                         bitmap = android.provider.MediaStore.Images.Media.getBitmap(cr, selectedImage);
-                        //campoFoto.setImageBitmap(bitmap);
-                        //Picasso picasso = null;
-                        //picasso.load(data.getData()).into(campoFoto);
-                        gravarAulas();
+                        campoFoto.setImageBitmap(bitmap);
 
-                        Toast.makeText(this, selectedImage.toString(),
-                                Toast.LENGTH_LONG).show();
+                        gravarAulas();
+                        //picasso.load(selectedImage).into(campoFoto);
+                        Toast.makeText(this, selectedImage.toString(),Toast.LENGTH_LONG).show();
 
 
                     } catch (Exception e) {
@@ -232,6 +232,7 @@ public class TelaAula extends AppCompatActivity {
         }
     }
 
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -241,18 +242,4 @@ public class TelaAula extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void carregarFoto (String localFoto){
-        Aula itemAula;
-        //Carregar arquivo de imagem
-        Bitmap imagemFoto = BitmapFactory.decodeFile(localFoto);
-
-        //Gerar imagem reduzida
-        Bitmap imagemFotoReduzida = Bitmap.createScaledBitmap(imagemFoto, 100, 100, true);
-
-        //Guarda o caminho da foto do aluno
-        //itemAula.setFoto(localFoto);
-
-        //Atualiza a imagem exibida na tela
-        //foto.setImageBitmap(imagemFotoReduzida);
-    }
 }

@@ -54,7 +54,7 @@ public class AulaAdapter extends RecyclerView.Adapter<AulaHolder> {
         Aula item = lista.get(position);
         int resID = contexto.getResources().getIdentifier(holder.imageViewFoto.toString(), "drawable", contexto.getPackageName());
 
-
+        //Tem que passar aqui o caminho da foto pra ser substituida
         if (item.getFoto().isEmpty()) {
             holder.getImageViewFoto().setImageResource(R.mipmap.ic_launcher);
         } else{
